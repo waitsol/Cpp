@@ -1,0 +1,3 @@
+/vscode/Cpp/primer/static_extern_inline_class_func/CMakeFiles/rebuild_cache.dir
+/vscode/Cpp/primer/static_extern_inline_class_func/CMakeFiles/main.dir
+/vscode/Cpp/primer/static_extern_inline_class_func/CMakeFiles/edit_cache.dir
