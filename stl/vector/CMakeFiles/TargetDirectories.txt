@@ -1,3 +1,0 @@
-/vscode/Cpp/stl/vector/CMakeFiles/rebuild_cache.dir
-/vscode/Cpp/stl/vector/CMakeFiles/vector_stl.dir
-/vscode/Cpp/stl/vector/CMakeFiles/edit_cache.dir
