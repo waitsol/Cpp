@@ -4,12 +4,11 @@ cmake_minimum_required(VERSION 3.10)
 # 指定为C++11 版本
 set(CMAKE_CXX_STANDARD 11)
 
-project(alloc VERSION 1.0)
+project(base VERSION 1.0)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib/)
 set(CMAKE_DEBUG_POSTFIX "_d")    
 set(CMAKE_RELEASE_POSTFIX "_r") 
 include_directories("${CMAKE_BINARY_DIR}/../../common")
-add_executable(alloc alloc.cpp)
 
 #SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

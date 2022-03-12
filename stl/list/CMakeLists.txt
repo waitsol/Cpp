@@ -12,6 +12,11 @@ set(CMAKE_RELEASE_POSTFIX "_r")
 include_directories("${CMAKE_BINARY_DIR}/../../common")
 include_directories("${CMAKE_BINARY_DIR}/../allocator/")
 include_directories("${CMAKE_BINARY_DIR}/../base/")
-add_executable(list_stl list_stl.cpp)
+
+
+file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/*.h )
+source_group("Include" FILES ${CURRENT_HEADERS})
+
+add_executable(list_stl  ${PROJECT_SOURCE_DIR}/list_stl.cpp ${CURRENT_HEADERS})
 
 #SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
