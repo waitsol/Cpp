@@ -1,7 +1,7 @@
 #ifndef __TCPHEAD_H
 #define __TCPHEAD_H
 #include "common.h"
-#ifndef __cplusplus
+#ifdef __cplusplus
 extern "C"
 {
 #endif
