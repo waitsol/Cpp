@@ -7,7 +7,7 @@ extern "C"
 #endif
     extern int GetSockFd(std::string addr = "127.0.0.1", int port = 777);
     extern int GetSockBlockFd(std::string addr = "127.0.0.1", int port = 777);
-#ifndef __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
