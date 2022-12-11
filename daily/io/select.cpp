@@ -51,7 +51,7 @@ int main()
         for(int i=serv_sock;i<maxfd;i++)
             if(m[i])
                 FD_SET(i,&rdfds);
-        int iRet = select(maxfd, &rdfds, NULL, NULL, nullptr);  // 注意注意
+        int iRet = select(maxfd, &rdfds, NULL, NULL, &tv);  // 注意注意
         cout<<"select\n";
         if(iRet < 0)
         {

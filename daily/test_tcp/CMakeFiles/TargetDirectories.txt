@@ -1,0 +1,4 @@
+/root/git/Cpp/daily/test_tcp/CMakeFiles/rebuild_cache.dir
+/root/git/Cpp/daily/test_tcp/CMakeFiles/edit_cache.dir
+/root/git/Cpp/daily/test_tcp/CMakeFiles/client.dir
+/root/git/Cpp/daily/test_tcp/CMakeFiles/server.dir
