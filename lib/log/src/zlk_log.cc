@@ -19,7 +19,7 @@ zlk_log &zlk_log::getInstance()
 }
 void zlk_log::init(string fileName, int buffsize, bool multithread)
 {
-    m_time=0;
+    m_time = 0;
     m_fileName_pre = fileName;
     m_buffsize = buffsize;
     m_multithread = multithread;
@@ -31,7 +31,7 @@ void zlk_log::init(string fileName, int buffsize, bool multithread)
     }
     m_running = true;
     m_thread = new thread(std::bind(&zlk_log::run, this));
-    usleep(100);//等待线程accept
+    usleep(100); // 等待线程accept
     m_pipe.init();
     printf("log init success\n");
 }
@@ -41,27 +41,31 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
     int cn = 0;
     int n = 0;
     char buf[buflen] = {0};
-   // cout << pszFormat << endl;
-    va_list args;
+    // cout << pszFormat << endl;
+    struct timeval now;
+    gettimeofday(&now, nullptr);
+    tm *t = localtime(&now.tv_sec);
+    cn = snprintf(buf, buflen, "[%d:%d:%d:%ld]", t->tm_hour, t->tm_min, t->tm_sec, now.tv_usec / 1000);
 
+    va_list args;
     va_start(args, pszFormat);
     if (mode & zlk_logmode_line)
     {
         mode = zlk_logmode(int(mode) ^ int(zlk_logmode_line));
-        n = vsnprintf(buf, buflen, "[FILE = %s,Func = %s,Line = %d]", args);
-        cn+=n;
-    //    cout<<cn<<endl;
+        n = vsnprintf(buf + cn, buflen - cn, "[FILE = %s,Func = %s,Line = %d]", args);
+        cn += n;
+        //    cout<<cn<<endl;
     }
- //   cout << buf << endl;
+    //   cout << buf << endl;
     memcpy(buf + cn, modeStr[mode], modeLen[mode]);
     cn += modeLen[mode];
-    cn += vsnprintf(buf +cn, buflen - cn, pszFormat, args);
+    cn += vsnprintf(buf + cn, buflen - cn, pszFormat, args);
     va_end(args);
-   // cout << cn << endl;
+    // cout << cn << endl;
     buf[cn] = '\n';
-    cn+=1;
+    cn += 1;
     {
-       // cout << buf << endl;
+        // cout << buf << endl;
         lock(m_logMutex);
         zlk_buffer *pbuf = nullptr;
 
@@ -75,7 +79,7 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
             }
             else
             {
-                //第二次按道理就必定不会出现这种情况  所以这里加锁
+                // 第二次按道理就必定不会出现这种情况  所以这里加锁
                 lock(m_fileMutex);
                 m_fileBufferList.push_back(pbuf);
                 pbuf = nullptr;
@@ -85,11 +89,11 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
         }
         if (!pbuf)
         {
-           // cout<<"new "<<endl;
+            // cout<<"new "<<endl;
             pbuf = new zlk_buffer(m_buffsize);
-            if(pbuf==nullptr)
+            if (pbuf == nullptr)
             {
-                cerr<<"pbuf = nullptr"<<endl;
+                cerr << "pbuf = nullptr" << endl;
             }
         }
         if (pbuf)
@@ -97,19 +101,19 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
             pbuf->append(buf, cn);
             m_logBufferList.push_front(pbuf);
         }
-       
+
         unlock(m_logMutex);
     }
 }
 void zlk_log::run()
 {
-    int sfd = GetSockBlockFd("127.0.0.1",7777);
+    int sfd = GetSockBlockFd("127.0.0.1", 7777);
     struct sockaddr_in client_addr; // connector's address information
     socklen_t sin_size = sizeof(client_addr);
-   // cout << "accept " << sfd<<endl;
+    // cout << "accept " << sfd<<endl;
 
     int rfd = accept(sfd, (struct sockaddr *)&client_addr, &sin_size);
-  //  cout << "rfd =" << rfd << endl;
+    //  cout << "rfd =" << rfd << endl;
     struct timeval tv; // 超时时间
     tv.tv_sec = 0;
     tv.tv_usec = 1000; // 注意单位是微秒
@@ -125,7 +129,7 @@ void zlk_log::run()
     {
 
         FD_SET(rfd, &rdfds);
-    //    printf("selcet\n");
+        //    printf("selcet\n");
         int iRet = select(rfd + 1, &rdfds, NULL, NULL, &tv); // 注意注意
         if (iRet < 0)
         {
@@ -134,19 +138,19 @@ void zlk_log::run()
             m_running = false;
             return;
         }
-        //cout<<GetTickCount64()<<endl;
+        // cout<<GetTickCount64()<<endl;
         tv.tv_sec = 0;
         tv.tv_usec = 1000; // 注意单位是微秒
-        t=0;
+        t = 0;
         open();
         if (0 == iRet)
         {
-            
+
             t = GetTickCount64();
-          //  cout<<"time out"<<endl;
+            //  cout<<"time out"<<endl;
             zlk_buffer *pbuf = nullptr;
 
-            //只可能第一个有数据
+            // 只可能第一个有数据
             if (m_logBufferList.size())
             {
                 lock(m_logMutex);
@@ -162,12 +166,12 @@ void zlk_log::run()
             {
                 m_running = false;
                 close(sfd);
-            
-            }else{
-     
+            }
+            else
+            {
+
                 sync2file();
             }
-
         }
     }
 }
@@ -185,14 +189,14 @@ void zlk_log::sync2file(zlk_buffer *pbuf)
         }
         unlock(m_fileMutex);
     }
-    if(pbuf)
+    if (pbuf)
         blist.push_back(pbuf);
     for (auto it = blist.begin(); it != blist.end(); it++)
     {
         pbuf = *it;
         if (pbuf)
         {
-            m_sz+=pbuf->write2File(m_file);
+            m_sz += pbuf->write2File(m_file);
             pbuf->reset();
         }
     }
@@ -221,17 +225,17 @@ void zlk_log::sync2file(zlk_buffer *pbuf)
 }
 void zlk_log::open()
 {
-    
+
     time_t now = time(0);
-    if(now-m_time>=60*60||m_sz>1024*1024*500)
-    {   
-            m_sz=0;
-            tm *t = localtime(&now);
-            m_time = now;
-            char buf[BUFSIZ] = {0};
-            snprintf(buf, BUFSIZ, "%s_%d_%d_%d_%d_%d_%d.log", m_fileName_pre.c_str(), t->tm_year+1900, t->tm_mon+1, t->tm_mday, t->tm_hour,t->tm_min,t->tm_sec);
-            if (m_file.is_open())
-                m_file.close();
-            m_file.open(buf);
+    if (now - m_time >= 60 * 60 || m_sz > 1024 * 1024 * 500)
+    {
+        m_sz = 0;
+        tm *t = localtime(&now);
+        m_time = now;
+        char buf[BUFSIZ] = {0};
+        snprintf(buf, BUFSIZ, "%s_%d_%d_%d_%d_%d_%d.log", m_fileName_pre.c_str(), t->tm_year + 1900, t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
+        if (m_file.is_open())
+            m_file.close();
+        m_file.open(buf);
     }
 }
