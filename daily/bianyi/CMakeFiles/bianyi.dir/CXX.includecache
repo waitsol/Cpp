@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/root/git/Cpp/daily/bianyi/main.cc
+net.h
+/root/git/Cpp/daily/bianyi/net.h
+role.h
+/root/git/Cpp/daily/bianyi/role.h
+
+/root/git/Cpp/daily/bianyi/net.h
+
+/root/git/Cpp/daily/bianyi/role.h
+

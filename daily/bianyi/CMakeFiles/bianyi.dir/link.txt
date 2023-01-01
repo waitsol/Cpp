@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/bianyi.dir/main.cc.o CMakeFiles/bianyi.dir/net.cc.o CMakeFiles/bianyi.dir/role.cc.o  -o bianyi 
