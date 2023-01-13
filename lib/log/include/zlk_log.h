@@ -53,7 +53,7 @@ public:
         m_file.close();
     }
 private:
-    void run();
+    void run(int rfd);
     zlk_log() = default;
     void lock(mutex &m)
     {

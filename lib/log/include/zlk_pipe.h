@@ -11,22 +11,16 @@ class zlk_pipe
 {
 public:
     zlk_pipe()=default;
-    void init()
+    int init()
     {
-        m_fd = socket(AF_INET, SOCK_STREAM, 0);
-        struct sockaddr_in ser_addr;
-        memset(&ser_addr, 0, sizeof(ser_addr));
-        ser_addr.sin_family = AF_INET;  
-        ser_addr.sin_port = htons(7777);                    //转化端口号
-        ser_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //回环地址
- 
-        //cout << "connect ret = "<< " mfd = " << m_fd << endl;
-        int ret = connect(m_fd, (struct sockaddr *)&ser_addr, sizeof(ser_addr));
-     //   cout<<"connect ret = "<<ret<<" mfd = "<<m_fd<<endl;
-        if (ret ==-1)
+        m_fd=-1;
+        int fd[2] = {0};
+        if (pipe(fd))
         {
-            cout << strerror(errno) << endl;
+            return -1;
         }
+        m_fd=fd[1];
+        return fd[0];
     }
     void notify(){
         write(m_fd, "a", 1);
@@ -36,7 +30,10 @@ public:
     }
     void close()
     {
-        ::close(m_fd);
+        if(m_fd>=0)
+        {
+            ::close(m_fd);
+        }
     }
 private:
     int m_fd;

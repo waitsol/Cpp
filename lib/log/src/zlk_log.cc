@@ -30,9 +30,12 @@ void zlk_log::init(string fileName, int buffsize, bool multithread)
         throw fileName + " open filed";
     }
     m_running = true;
-    m_thread = new thread(std::bind(&zlk_log::run, this));
-    usleep(100); // 等待线程accept
-    m_pipe.init();
+    int rfd = m_pipe.init();
+    if(rfd==-1)
+        return;
+
+    m_thread = new thread(std::bind(&zlk_log::run, this,rfd));
+    
     printf("log init success\n");
 }
 void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
@@ -105,14 +108,8 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
         unlock(m_logMutex);
     }
 }
-void zlk_log::run()
+void zlk_log::run(int rfd)
 {
-    int sfd = GetSockBlockFd("127.0.0.1", 7777);
-    struct sockaddr_in client_addr; // connector's address information
-    socklen_t sin_size = sizeof(client_addr);
-    // cout << "accept " << sfd<<endl;
-
-    int rfd = accept(sfd, (struct sockaddr *)&client_addr, &sin_size);
     //  cout << "rfd =" << rfd << endl;
     struct timeval tv; // 超时时间
     tv.tv_sec = 0;
@@ -133,9 +130,10 @@ void zlk_log::run()
         int iRet = select(rfd + 1, &rdfds, NULL, NULL, &tv); // 注意注意
         if (iRet < 0)
         {
-            close(sfd);
             printf("selcet error, iRet %d\n", iRet);
             m_running = false;
+            close(rfd);
+
             return;
         }
         // cout<<GetTickCount64()<<endl;
@@ -165,7 +163,7 @@ void zlk_log::run()
             if (read(rfd, buf, BUFSIZ) <= 0)
             {
                 m_running = false;
-                close(sfd);
+                close(rfd);
             }
             else
             {
