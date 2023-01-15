@@ -1,3 +1,8 @@
+/root/git/Cpp/lib/log/CMakeFiles/install/strip.dir
+/root/git/Cpp/lib/log/CMakeFiles/install/local.dir
+/root/git/Cpp/lib/log/CMakeFiles/install.dir
+/root/git/Cpp/lib/log/CMakeFiles/list_install_components.dir
 /root/git/Cpp/lib/log/CMakeFiles/rebuild_cache.dir
+/root/git/Cpp/lib/log/CMakeFiles/main.dir
 /root/git/Cpp/lib/log/CMakeFiles/edit_cache.dir
 /root/git/Cpp/lib/log/CMakeFiles/zlk_log.dir

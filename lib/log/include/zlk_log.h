@@ -7,6 +7,7 @@
 #include <thread>
 #include <string>
 #include <mutex>
+#include <sys/time.h>
 using namespace std;
 inline long long GetTickCount64()
 {
@@ -88,4 +89,8 @@ public:
     int64_t m_sz;
     
 };
+#define INF(pszFormat, args...) zlk_log::getInstance().write(zlk_logmode((zlk_logmode_info) | (zlk_logmode_line)), pszFormat, __FILE__, __func__, __LINE__, ##args)
+#define DBG(pszFormat, args...) zlk_log::getInstance().write(zlk_logmode((zlk_logmode_debug) | (zlk_logmode_line)), pszFormat, __FILE__, __func__, __LINE__, ##args)
+#define ERR(pszFormat, args...) zlk_log::getInstance().write(zlk_logmode((zlk_logmode_err) | (zlk_logmode_line)), pszFormat, __FILE__, __func__, __LINE__, ##args)
+
 #endif

@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include "iostream"
-#include "tcpHead.h"
 using namespace std;
 class zlk_pipe
 {

@@ -1,7 +1,8 @@
 #include "zlk_log.h"
 #include <set>
 #include <map>
-#define INF(pszFormat, args...) zlk_log::getInstance().write(zlk_logmode(int(zlk_logmode_debug) | int(zlk_logmode_line)), pszFormat, __FILE__, __func__, __LINE__, ##args)
+#include <vector>
+#include <functional>
 int sz = 3000000;
 int a[13] = {0};
 void debuglog(int n)

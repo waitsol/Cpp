@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/main.dir/src/main.cc.o  -o main  -Wl,-rpath,/root/git/Cpp/lib/log/lib lib/libzlk_log.so -lpthread 

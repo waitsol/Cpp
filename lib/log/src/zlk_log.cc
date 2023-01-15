@@ -1,5 +1,4 @@
 #include "zlk_log.h"
-#include "tcpHead.h"
 #include <stdarg.h>
 #include <unistd.h>
 #include <functional>
@@ -24,6 +23,10 @@ void zlk_log::init(string fileName, int buffsize, bool multithread)
     m_buffsize = buffsize;
     m_multithread = multithread;
     m_running = false;
+    //直接往屏幕输出
+    if(fileName.size()==0)
+        return;
+
     open();
     if (!m_file.is_open())
     {
@@ -66,6 +69,11 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
     va_end(args);
     // cout << cn << endl;
     buf[cn] = '\n';
+    if(m_fileName_pre.size()==0)
+    {
+        printf("%s",buf);
+        return;
+    }
     cn += 1;
     {
         // cout << buf << endl;
