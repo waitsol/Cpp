@@ -1,1 +1,1 @@
-/usr/local/lib/libzlk_log.so
+/usr/lib/libzlk_log.so

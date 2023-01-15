@@ -15,7 +15,7 @@ file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/zlk_log.cc )
 
 add_library(${PROJECT_NAME} SHARED ${SRC} ${CURRENT_HEADERS})
 
-set(CMAKE_INSTALL_PREFIX /usr/local)
+set(CMAKE_INSTALL_PREFIX /usr/)
 install(TARGETS zlk_log
         EXPORT MyLibTargets 
         LIBRARY DESTINATION lib  # 动态库安装路径 /usr/local/lib/libtcpFunc.so
