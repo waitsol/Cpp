@@ -10,9 +10,9 @@ void debuglog(int n)
     for (int i = 1; i <= sz; i++)
     {
         INF("debuglog n =  %d,%d", n, i);
-        // zlk_log::getInstance().write(zlk_logmode_debug, "debuglog n =  %d,%d", n, i);
+         zlk_log::getInstance().write(zlk_logmode_debug, "debuglog n =  %d,%d", n, i);
 
-        a[n] = i;
+      //  a[n] = i;
     }
 }
 void test()
@@ -44,30 +44,33 @@ void test()
         cout << endl;
     }
 }
-int main()
+int main(int argc,char *argv[])
 {
     // test();
     // return 0 ;
 
+
     zlk_log::getInstance().init("aa", 2048, true);
 
-    zlk_log::getInstance().t = 0;
+    zlk_log::getInstance().test_time = 0;
     thread *pt[40];
     int n = 12;
     auto start = GetTickCount64();
+    n = atoi(argv[1]);
+    sz = atoi(argv[2]);
     for (int i = 0; i < n; i++)
     {
         pt[i] = new thread(std::bind(debuglog, i));
     }
-    new thread([]()
-               {
-            while(1)
-            {
-                sleep(1);
-                for(int i=0;i<12;i++)
-                    cout<<a[i]<<" ";
-                cout<<endl;
-            } });
+    // new thread([]()
+    //            {
+    //         while(1)
+    //         {
+    //             sleep(1);
+    //             for(int i=0;i<12;i++)
+    //                 cout<<a[i]<<" ";
+    //             cout<<endl;
+    //         } });
     for (int i = 0; i < n; i++)
     {
         pt[i]->join();
@@ -76,9 +79,9 @@ int main()
     }
     sleep(2);
 
-    zlk_log::getInstance().debug();
+    //zlk_log::getInstance().debug();
 
-    cout << "over use time " << (zlk_log::getInstance().t - start) << endl;
+    cout << "over use time " << (zlk_log::getInstance().test_time - start) << "ms" << endl;
     zlk_log::getInstance().uninit();
-    system("wc -l aa");
+    
 }

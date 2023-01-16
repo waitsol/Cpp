@@ -147,23 +147,28 @@ void zlk_log::run(int rfd)
         // cout<<GetTickCount64()<<endl;
         tv.tv_sec = 0;
         tv.tv_usec = 1000; // 注意单位是微秒
-        t = 0;
         open();
         if (0 == iRet)
         {
 
-            t = GetTickCount64();
-            //  cout<<"time out"<<endl;
+           
             zlk_buffer *pbuf = nullptr;
 
             // 只可能第一个有数据
             if (m_logBufferList.size())
             {
                 lock(m_logMutex);
-                pbuf = m_logBufferList.front();
-                m_logBufferList.pop_front();
+                // 必须重新判断 如果突然写线程把m_logBufferList强制推送到m_fileBufferList
+                if (m_logBufferList.size() && (*m_logBufferList.begin())->leave() != m_buffsize)
+                {
+                    pbuf = m_logBufferList.front();
+        
+                    m_logBufferList.pop_front();
+                }
                 unlock(m_logMutex);
             }
+           // cout << "time out" << (pbuf == nullptr) << endl;
+
             sync2file(pbuf);
         }
         else
@@ -225,6 +230,8 @@ void zlk_log::sync2file(zlk_buffer *pbuf)
             }
 
             blist.pop_front();
+
+            test_time = GetTickCount64();
         }
         unlock(m_logMutex);
     }

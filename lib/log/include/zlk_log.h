@@ -85,7 +85,7 @@ private:
     string  m_fileName_pre;
 public:
     static zlk_log m_instance;
-    int64_t t;
+    int64_t test_time;
     int64_t m_sz;
     
 };
