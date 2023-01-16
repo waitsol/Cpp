@@ -1,0 +1,7 @@
+/root/git/Cpp/common/CMakeFiles/install/strip.dir
+/root/git/Cpp/common/CMakeFiles/install/local.dir
+/root/git/Cpp/common/CMakeFiles/install.dir
+/root/git/Cpp/common/CMakeFiles/list_install_components.dir
+/root/git/Cpp/common/CMakeFiles/rebuild_cache.dir
+/root/git/Cpp/common/CMakeFiles/edit_cache.dir
+/root/git/Cpp/common/CMakeFiles/tcpFunc.dir

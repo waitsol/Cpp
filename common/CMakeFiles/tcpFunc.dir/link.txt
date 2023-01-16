@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libtcpFunc.so -o libtcpFunc.so CMakeFiles/tcpFunc.dir/tcpHead.cpp.o 
