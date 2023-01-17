@@ -10,9 +10,10 @@ void debuglog(int n)
     for (int i = 1; i <= sz; i++)
     {
         INF("debuglog n =  %d,%d", n, i);
-         zlk_log::getInstance().write(zlk_logmode_debug, "debuglog n =  %d,%d", n, i);
+        DBG("debuglog n =  %d,%d", n, i);
+        ERR("debuglog n =  %d,%d", n, i);
 
-      //  a[n] = i;
+        //  a[n] = i;
     }
 }
 void test()
@@ -44,13 +45,12 @@ void test()
         cout << endl;
     }
 }
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
     // test();
     // return 0 ;
 
-
-    zlk_log::getInstance().init("aa", 2048, true);
+    zlk_log::getInstance().init("", 2048, true);
 
     zlk_log::getInstance().test_time = 0;
     thread *pt[40];
@@ -79,9 +79,8 @@ int main(int argc,char *argv[])
     }
     sleep(2);
 
-    //zlk_log::getInstance().debug();
+    // zlk_log::getInstance().debug();
 
     cout << "over use time " << (zlk_log::getInstance().test_time - start) << "ms" << endl;
     zlk_log::getInstance().uninit();
-    
 }

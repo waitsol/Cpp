@@ -3,28 +3,29 @@
 #include <unistd.h>
 #include <functional>
 static const char *modeStr[zlk_logmode_end] = {
-    "[zlk_logmode_err]:",
-    "[zlk_logmode_info]:",
     "[zlk_logmode_debug]:",
+    "[zlk_logmode_info]:",
+    "[zlk_logmode_err]:",
 
 };
 zlk_log zlk_log::m_instance;
 static const int modeLen[zlk_logmode_end] = {
-    18, 29, 20};
+    20, 19, 18};
 
 zlk_log &zlk_log::getInstance()
 {
     return m_instance;
 }
-void zlk_log::init(string fileName, int buffsize, bool multithread)
+void zlk_log::init(string fileName, int buffsize, bool multithread, zlk_logmode print_level)
 {
     m_time = 0;
     m_fileName_pre = fileName;
     m_buffsize = buffsize;
     m_multithread = multithread;
     m_running = false;
-    //直接往屏幕输出
-    if(fileName.size()==0)
+    // 直接往屏幕输出
+    m_print_level = print_level;
+    if (fileName.size() == 0)
         return;
 
     open();
@@ -34,15 +35,18 @@ void zlk_log::init(string fileName, int buffsize, bool multithread)
     }
     m_running = true;
     int rfd = m_pipe.init();
-    if(rfd==-1)
+    if (rfd == -1)
         return;
 
-    m_thread = new thread(std::bind(&zlk_log::run, this,rfd));
-    
+    m_thread = new thread(std::bind(&zlk_log::run, this, rfd));
+
     printf("log init success\n");
 }
 void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
 {
+    if ((mode & (zlk_logmode_end - 1)) < m_print_level)
+        return;
+
     static const int buflen = 4096;
     int cn = 0;
     int n = 0;
@@ -69,9 +73,9 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
     va_end(args);
     // cout << cn << endl;
     buf[cn] = '\n';
-    if(m_fileName_pre.size()==0)
+    if (m_fileName_pre.size() == 0)
     {
-        printf("%s",buf);
+        printf("%s", buf);
         return;
     }
     cn += 1;
@@ -151,7 +155,6 @@ void zlk_log::run(int rfd)
         if (0 == iRet)
         {
 
-           
             zlk_buffer *pbuf = nullptr;
 
             // 只可能第一个有数据
@@ -162,12 +165,12 @@ void zlk_log::run(int rfd)
                 if (m_logBufferList.size() && (*m_logBufferList.begin())->leave() != m_buffsize)
                 {
                     pbuf = m_logBufferList.front();
-        
+
                     m_logBufferList.pop_front();
                 }
                 unlock(m_logMutex);
             }
-           // cout << "time out" << (pbuf == nullptr) << endl;
+            // cout << "time out" << (pbuf == nullptr) << endl;
 
             sync2file(pbuf);
         }
