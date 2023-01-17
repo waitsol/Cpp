@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/root/git/Cpp/lib/log/include 
+CXX_INCLUDES = -I/root/wm/git/Cpp/lib/log/include 
 

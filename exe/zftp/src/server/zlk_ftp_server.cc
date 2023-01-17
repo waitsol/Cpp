@@ -2,38 +2,35 @@
 #include "lua_load.h"
 #include "zlk_ftp_server.h"
 #include "boost_socket.h"
-#include "zlk_message.pb.h"
-#include "zftp_handmessage.h"
+#include "zftp_server_handmessage.h"
 
 Server *g_server;
-void Server::regist();
+void Server::regist()
 {
-    regist(new zftp_handleMessage);
+    regist(new zftp_server_handleMessage);
 }
 // 注册消息
 void Server::regist(zlk_messagehandle *pz)
 {
     for (auto x : pz->m_mapFunc)
     {
-        m_mapFunc[x->first] = x->second;
+        m_mapFunc[x.first] = x.second;
+        DBG("regist %d", int(x.first));
     }
 }
 
-void Server::handle_message(const char *data, int sz)
+void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &packetResponse)
 {
-    zftp_message::Pakcet packet;
 
-    bool ok = packet.ParseFromArray(data, sz);
-    if (!ok)
-    {
-        ERR("ParseFromArray error sz = %d", sz);
-        return;
-    }
-    zftp_message::response_msg res;
-    auto iter = m_mapFunc.find(packet.msgid());
+    auto iter = m_mapFunc.find(zlkMsg(packet.msgid()));
     if (iter != m_mapFunc.end())
     {
-        (*iter)(packet, res);
+        DBG("run func msgid = %d", packet.msgid());
+        iter->second(packet, packetResponse);
+        if (packetResponse.msgbody().size())
+        {
+            packetResponse.set_msgid(packet.msgid());
+        }
     }
     else
     {
@@ -42,10 +39,13 @@ void Server::handle_message(const char *data, int sz)
 }
 int main()
 {
-    zlk_log::getInstance().init("", 1, 1);
+    zlk_log::getInstance().init("", 1, 1, zlk_logmode_debug);
     g_server = new Server();
+    g_server->regist();
     io_service_pool isp(2);
-    zlk_boost_socket s(isp, 1111);
+    zlk_boost_socket s(isp);
+    s.bind();
+    s.accept();
     isp.run();
     return 0;
 }

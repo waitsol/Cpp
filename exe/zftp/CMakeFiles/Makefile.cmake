@@ -45,5 +45,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/zlk_zftp_server.dir/DependInfo.cmake"
+  "CMakeFiles/zftp_client.dir/DependInfo.cmake"
+  "CMakeFiles/zftp_server.dir/DependInfo.cmake"
   )

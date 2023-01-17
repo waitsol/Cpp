@@ -48,6 +48,46 @@ struct mkdir_msgDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 mkdir_msgDefaultTypeInternal _mkdir_msg_default_instance_;
+PROTOBUF_CONSTEXPR ls_msg::ls_msg(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.data_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ls_msgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ls_msgDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ls_msgDefaultTypeInternal() {}
+  union {
+    ls_msg _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ls_msgDefaultTypeInternal _ls_msg_default_instance_;
+PROTOBUF_CONSTEXPR ls_response_node::ls_response_node(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.id_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ls_response_nodeDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ls_response_nodeDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ls_response_nodeDefaultTypeInternal() {}
+  union {
+    ls_response_node _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ls_response_nodeDefaultTypeInternal _ls_response_node_default_instance_;
+PROTOBUF_CONSTEXPR ls_response::ls_response(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.list_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct ls_responseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ls_responseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ls_responseDefaultTypeInternal() {}
+  union {
+    ls_response _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ls_responseDefaultTypeInternal _ls_response_default_instance_;
 PROTOBUF_CONSTEXPR rm_msg::rm_msg(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.file_name_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
@@ -120,7 +160,7 @@ struct response_msgDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 response_msgDefaultTypeInternal _response_msg_default_instance_;
 }  // namespace zftp_message
-static ::_pb::Metadata file_level_metadata_zlk_5fmessage_2eproto[7];
+static ::_pb::Metadata file_level_metadata_zlk_5fmessage_2eproto[10];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_zlk_5fmessage_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_zlk_5fmessage_2eproto = nullptr;
 
@@ -140,6 +180,28 @@ const uint32_t TableStruct_zlk_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VAR
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::zftp_message::mkdir_msg, _impl_.data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_msg, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_msg, _impl_.data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_response_node, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_response_node, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_response_node, _impl_.name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_response, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::zftp_message::ls_response, _impl_.list_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::zftp_message::rm_msg, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -185,16 +247,22 @@ const uint32_t TableStruct_zlk_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VAR
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::zftp_message::Pakcet)},
   { 8, -1, -1, sizeof(::zftp_message::mkdir_msg)},
-  { 15, -1, -1, sizeof(::zftp_message::rm_msg)},
-  { 24, -1, -1, sizeof(::zftp_message::pull_msg)},
-  { 31, -1, -1, sizeof(::zftp_message::pull_respon_msg)},
-  { 39, -1, -1, sizeof(::zftp_message::push_msg)},
-  { 48, -1, -1, sizeof(::zftp_message::response_msg)},
+  { 15, -1, -1, sizeof(::zftp_message::ls_msg)},
+  { 22, -1, -1, sizeof(::zftp_message::ls_response_node)},
+  { 30, -1, -1, sizeof(::zftp_message::ls_response)},
+  { 37, -1, -1, sizeof(::zftp_message::rm_msg)},
+  { 46, -1, -1, sizeof(::zftp_message::pull_msg)},
+  { 53, -1, -1, sizeof(::zftp_message::pull_respon_msg)},
+  { 61, -1, -1, sizeof(::zftp_message::push_msg)},
+  { 70, -1, -1, sizeof(::zftp_message::response_msg)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::zftp_message::_Pakcet_default_instance_._instance,
   &::zftp_message::_mkdir_msg_default_instance_._instance,
+  &::zftp_message::_ls_msg_default_instance_._instance,
+  &::zftp_message::_ls_response_node_default_instance_._instance,
+  &::zftp_message::_ls_response_default_instance_._instance,
   &::zftp_message::_rm_msg_default_instance_._instance,
   &::zftp_message::_pull_msg_default_instance_._instance,
   &::zftp_message::_pull_respon_msg_default_instance_._instance,
@@ -205,19 +273,22 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_zlk_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\021zlk_message.proto\022\014zftp_message\"(\n\006Pak"
   "cet\022\r\n\005msgId\030\001 \001(\005\022\017\n\007msgBody\030\002 \001(\t\"\031\n\tm"
-  "kdir_msg\022\014\n\004data\030\001 \001(\t\"=\n\006rm_msg\022\r\n\005forc"
-  "e\030\001 \001(\010\022\021\n\trecursion\030\002 \001(\010\022\021\n\tfile_name\030"
-  "\003 \001(\t\"\030\n\010pull_msg\022\014\n\004name\030\001 \001(\t\"+\n\017pull_"
-  "respon_msg\022\n\n\002ok\030\001 \001(\010\022\014\n\004data\030\002 \001(\014\"5\n\010"
-  "push_msg\022\014\n\004data\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\022\r\n\005"
-  "force\030\003 \001(\010\")\n\014response_msg\022\n\n\002ok\030\001 \001(\010\022"
-  "\r\n\005error\030\002 \001(\tb\006proto3"
+  "kdir_msg\022\014\n\004data\030\001 \001(\t\"\026\n\006ls_msg\022\014\n\004data"
+  "\030\001 \001(\t\"]\n\013ls_response\022,\n\004list\030\001 \003(\0132\036.zf"
+  "tp_message.ls_response.node\032 \n\004node\022\n\n\002i"
+  "d\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"=\n\006rm_msg\022\r\n\005force"
+  "\030\001 \001(\010\022\021\n\trecursion\030\002 \001(\010\022\021\n\tfile_name\030\003"
+  " \001(\t\"\030\n\010pull_msg\022\014\n\004name\030\001 \001(\t\"+\n\017pull_r"
+  "espon_msg\022\n\n\002ok\030\001 \001(\010\022\014\n\004data\030\002 \001(\014\"5\n\010p"
+  "ush_msg\022\014\n\004data\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\022\r\n\005f"
+  "orce\030\003 \001(\010\")\n\014response_msg\022\n\n\002ok\030\001 \001(\010\022\r"
+  "\n\005error\030\002 \001(\tb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_zlk_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zlk_5fmessage_2eproto = {
-    false, false, 342, descriptor_table_protodef_zlk_5fmessage_2eproto,
+    false, false, 461, descriptor_table_protodef_zlk_5fmessage_2eproto,
     "zlk_message.proto",
-    &descriptor_table_zlk_5fmessage_2eproto_once, nullptr, 0, 7,
+    &descriptor_table_zlk_5fmessage_2eproto_once, nullptr, 0, 10,
     schemas, file_default_instances, TableStruct_zlk_5fmessage_2eproto::offsets,
     file_level_metadata_zlk_5fmessage_2eproto, file_level_enum_descriptors_zlk_5fmessage_2eproto,
     file_level_service_descriptors_zlk_5fmessage_2eproto,
@@ -665,6 +736,624 @@ void mkdir_msg::InternalSwap(mkdir_msg* other) {
 
 // ===================================================================
 
+class ls_msg::_Internal {
+ public:
+};
+
+ls_msg::ls_msg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:zftp_message.ls_msg)
+}
+ls_msg::ls_msg(const ls_msg& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ls_msg* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_data().empty()) {
+    _this->_impl_.data_.Set(from._internal_data(), 
+      _this->GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(copy_constructor:zftp_message.ls_msg)
+}
+
+inline void ls_msg::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.data_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.data_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.data_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ls_msg::~ls_msg() {
+  // @@protoc_insertion_point(destructor:zftp_message.ls_msg)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ls_msg::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.data_.Destroy();
+}
+
+void ls_msg::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ls_msg::Clear() {
+// @@protoc_insertion_point(message_clear_start:zftp_message.ls_msg)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.data_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ls_msg::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string data = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_data();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "zftp_message.ls_msg.data"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ls_msg::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:zftp_message.ls_msg)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string data = 1;
+  if (!this->_internal_data().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_data().data(), static_cast<int>(this->_internal_data().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "zftp_message.ls_msg.data");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_data(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:zftp_message.ls_msg)
+  return target;
+}
+
+size_t ls_msg::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:zftp_message.ls_msg)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string data = 1;
+  if (!this->_internal_data().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_data());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ls_msg::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ls_msg::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ls_msg::GetClassData() const { return &_class_data_; }
+
+
+void ls_msg::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ls_msg*>(&to_msg);
+  auto& from = static_cast<const ls_msg&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:zftp_message.ls_msg)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_data().empty()) {
+    _this->_internal_set_data(from._internal_data());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ls_msg::CopyFrom(const ls_msg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:zftp_message.ls_msg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ls_msg::IsInitialized() const {
+  return true;
+}
+
+void ls_msg::InternalSwap(ls_msg* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.data_, lhs_arena,
+      &other->_impl_.data_, rhs_arena
+  );
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ls_msg::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
+      file_level_metadata_zlk_5fmessage_2eproto[2]);
+}
+
+// ===================================================================
+
+class ls_response_node::_Internal {
+ public:
+};
+
+ls_response_node::ls_response_node(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:zftp_message.ls_response.node)
+}
+ls_response_node::ls_response_node(const ls_response_node& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ls_response_node* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_name().empty()) {
+    _this->_impl_.name_.Set(from._internal_name(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.id_ = from._impl_.id_;
+  // @@protoc_insertion_point(copy_constructor:zftp_message.ls_response.node)
+}
+
+inline void ls_response_node::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.name_){}
+    , decltype(_impl_.id_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.name_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.name_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+ls_response_node::~ls_response_node() {
+  // @@protoc_insertion_point(destructor:zftp_message.ls_response.node)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ls_response_node::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.name_.Destroy();
+}
+
+void ls_response_node::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ls_response_node::Clear() {
+// @@protoc_insertion_point(message_clear_start:zftp_message.ls_response.node)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.id_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ls_response_node::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _impl_.id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string name = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_name();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "zftp_message.ls_response.node.name"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ls_response_node::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:zftp_message.ls_response.node)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 id = 1;
+  if (this->_internal_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_id(), target);
+  }
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "zftp_message.ls_response.node.name");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_name(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:zftp_message.ls_response.node)
+  return target;
+}
+
+size_t ls_response_node::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:zftp_message.ls_response.node)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 2;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // int32 id = 1;
+  if (this->_internal_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ls_response_node::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ls_response_node::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ls_response_node::GetClassData() const { return &_class_data_; }
+
+
+void ls_response_node::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ls_response_node*>(&to_msg);
+  auto& from = static_cast<const ls_response_node&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:zftp_message.ls_response.node)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (from._internal_id() != 0) {
+    _this->_internal_set_id(from._internal_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ls_response_node::CopyFrom(const ls_response_node& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:zftp_message.ls_response.node)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ls_response_node::IsInitialized() const {
+  return true;
+}
+
+void ls_response_node::InternalSwap(ls_response_node* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.name_, lhs_arena,
+      &other->_impl_.name_, rhs_arena
+  );
+  swap(_impl_.id_, other->_impl_.id_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ls_response_node::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
+      file_level_metadata_zlk_5fmessage_2eproto[3]);
+}
+
+// ===================================================================
+
+class ls_response::_Internal {
+ public:
+};
+
+ls_response::ls_response(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:zftp_message.ls_response)
+}
+ls_response::ls_response(const ls_response& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  ls_response* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.list_){from._impl_.list_}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:zftp_message.ls_response)
+}
+
+inline void ls_response::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.list_){arena}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+ls_response::~ls_response() {
+  // @@protoc_insertion_point(destructor:zftp_message.ls_response)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void ls_response::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.list_.~RepeatedPtrField();
+}
+
+void ls_response::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void ls_response::Clear() {
+// @@protoc_insertion_point(message_clear_start:zftp_message.ls_response)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.list_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ls_response::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .zftp_message.ls_response.node list = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_list(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* ls_response::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:zftp_message.ls_response)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .zftp_message.ls_response.node list = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_list_size()); i < n; i++) {
+    const auto& repfield = this->_internal_list(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:zftp_message.ls_response)
+  return target;
+}
+
+size_t ls_response::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:zftp_message.ls_response)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .zftp_message.ls_response.node list = 1;
+  total_size += 1UL * this->_internal_list_size();
+  for (const auto& msg : this->_impl_.list_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ls_response::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ls_response::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ls_response::GetClassData() const { return &_class_data_; }
+
+
+void ls_response::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<ls_response*>(&to_msg);
+  auto& from = static_cast<const ls_response&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:zftp_message.ls_response)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_impl_.list_.MergeFrom(from._impl_.list_);
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ls_response::CopyFrom(const ls_response& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:zftp_message.ls_response)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ls_response::IsInitialized() const {
+  return true;
+}
+
+void ls_response::InternalSwap(ls_response* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.list_.InternalSwap(&other->_impl_.list_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ls_response::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
+      file_level_metadata_zlk_5fmessage_2eproto[4]);
+}
+
+// ===================================================================
+
 class rm_msg::_Internal {
  public:
 };
@@ -923,7 +1612,7 @@ void rm_msg::InternalSwap(rm_msg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata rm_msg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
-      file_level_metadata_zlk_5fmessage_2eproto[2]);
+      file_level_metadata_zlk_5fmessage_2eproto[5]);
 }
 
 // ===================================================================
@@ -1126,7 +1815,7 @@ void pull_msg::InternalSwap(pull_msg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata pull_msg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
-      file_level_metadata_zlk_5fmessage_2eproto[3]);
+      file_level_metadata_zlk_5fmessage_2eproto[6]);
 }
 
 // ===================================================================
@@ -1351,7 +2040,7 @@ void pull_respon_msg::InternalSwap(pull_respon_msg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata pull_respon_msg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
-      file_level_metadata_zlk_5fmessage_2eproto[4]);
+      file_level_metadata_zlk_5fmessage_2eproto[7]);
 }
 
 // ===================================================================
@@ -1626,7 +2315,7 @@ void push_msg::InternalSwap(push_msg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata push_msg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
-      file_level_metadata_zlk_5fmessage_2eproto[5]);
+      file_level_metadata_zlk_5fmessage_2eproto[8]);
 }
 
 // ===================================================================
@@ -1856,7 +2545,7 @@ void response_msg::InternalSwap(response_msg* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata response_msg::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zlk_5fmessage_2eproto_getter, &descriptor_table_zlk_5fmessage_2eproto_once,
-      file_level_metadata_zlk_5fmessage_2eproto[6]);
+      file_level_metadata_zlk_5fmessage_2eproto[9]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -1869,6 +2558,18 @@ Arena::CreateMaybeMessage< ::zftp_message::Pakcet >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::zftp_message::mkdir_msg*
 Arena::CreateMaybeMessage< ::zftp_message::mkdir_msg >(Arena* arena) {
   return Arena::CreateMessageInternal< ::zftp_message::mkdir_msg >(arena);
+}
+template<> PROTOBUF_NOINLINE ::zftp_message::ls_msg*
+Arena::CreateMaybeMessage< ::zftp_message::ls_msg >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::zftp_message::ls_msg >(arena);
+}
+template<> PROTOBUF_NOINLINE ::zftp_message::ls_response_node*
+Arena::CreateMaybeMessage< ::zftp_message::ls_response_node >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::zftp_message::ls_response_node >(arena);
+}
+template<> PROTOBUF_NOINLINE ::zftp_message::ls_response*
+Arena::CreateMaybeMessage< ::zftp_message::ls_response >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::zftp_message::ls_response >(arena);
 }
 template<> PROTOBUF_NOINLINE ::zftp_message::rm_msg*
 Arena::CreateMaybeMessage< ::zftp_message::rm_msg >(Arena* arena) {

@@ -7,6 +7,16 @@ message Pakcet{
 message mkdir_msg{
     string data=1;
 }
+message ls_msg{
+    string data=1;
+}
+message ls_response{
+    message node{
+        int32 id=1;
+        string name=2;
+    }
+    repeated node list=1;
+}
 message rm_msg{
     bool   force=1;
     bool   recursion=2;

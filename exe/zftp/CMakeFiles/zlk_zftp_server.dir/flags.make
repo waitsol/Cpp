@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/root/git/Cpp/exe/zftp/include -I/root/git/Cpp/exe/zftp/../../lib/log/include 
+CXX_INCLUDES = -I/root/wm/git/Cpp/exe/zftp/include -I/root/wm/git/Cpp/exe/zftp/../../lib/log/include 
 

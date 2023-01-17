@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/git/Cpp/exe/zftp
+CMAKE_SOURCE_DIR = /root/wm/git/Cpp/exe/zftp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/git/Cpp/exe/zftp
+CMAKE_BINARY_DIR = /root/wm/git/Cpp/exe/zftp
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/exe/zftp/CMakeFiles /root/git/Cpp/exe/zftp/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles /root/wm/git/Cpp/exe/zftp/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/exe/zftp/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,111 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named zlk_zftp_server
+# Target rules for targets named zftp_client
 
 # Build rule for target.
-zlk_zftp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 zlk_zftp_server
-.PHONY : zlk_zftp_server
+zftp_client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 zftp_client
+.PHONY : zftp_client
 
 # fast build rule for target.
-zlk_zftp_server/fast:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/build
-.PHONY : zlk_zftp_server/fast
+zftp_client/fast:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/build
+.PHONY : zftp_client/fast
+
+#=============================================================================
+# Target rules for targets named zftp_server
+
+# Build rule for target.
+zftp_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 zftp_server
+.PHONY : zftp_server
+
+# fast build rule for target.
+zftp_server/fast:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/build
+.PHONY : zftp_server/fast
+
+src/client/zftp_client_handmessage.o: src/client/zftp_client_handmessage.cc.o
+
+.PHONY : src/client/zftp_client_handmessage.o
+
+# target to build an object file
+src/client/zftp_client_handmessage.cc.o:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zftp_client_handmessage.cc.o
+.PHONY : src/client/zftp_client_handmessage.cc.o
+
+src/client/zftp_client_handmessage.i: src/client/zftp_client_handmessage.cc.i
+
+.PHONY : src/client/zftp_client_handmessage.i
+
+# target to preprocess a source file
+src/client/zftp_client_handmessage.cc.i:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zftp_client_handmessage.cc.i
+.PHONY : src/client/zftp_client_handmessage.cc.i
+
+src/client/zftp_client_handmessage.s: src/client/zftp_client_handmessage.cc.s
+
+.PHONY : src/client/zftp_client_handmessage.s
+
+# target to generate assembly for a file
+src/client/zftp_client_handmessage.cc.s:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zftp_client_handmessage.cc.s
+.PHONY : src/client/zftp_client_handmessage.cc.s
+
+src/client/zlk_ftp_client.o: src/client/zlk_ftp_client.cc.o
+
+.PHONY : src/client/zlk_ftp_client.o
+
+# target to build an object file
+src/client/zlk_ftp_client.cc.o:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_ftp_client.cc.o
+.PHONY : src/client/zlk_ftp_client.cc.o
+
+src/client/zlk_ftp_client.i: src/client/zlk_ftp_client.cc.i
+
+.PHONY : src/client/zlk_ftp_client.i
+
+# target to preprocess a source file
+src/client/zlk_ftp_client.cc.i:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_ftp_client.cc.i
+.PHONY : src/client/zlk_ftp_client.cc.i
+
+src/client/zlk_ftp_client.s: src/client/zlk_ftp_client.cc.s
+
+.PHONY : src/client/zlk_ftp_client.s
+
+# target to generate assembly for a file
+src/client/zlk_ftp_client.cc.s:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_ftp_client.cc.s
+.PHONY : src/client/zlk_ftp_client.cc.s
+
+src/client/zlk_zftp_client_connect.o: src/client/zlk_zftp_client_connect.cc.o
+
+.PHONY : src/client/zlk_zftp_client_connect.o
+
+# target to build an object file
+src/client/zlk_zftp_client_connect.cc.o:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_zftp_client_connect.cc.o
+.PHONY : src/client/zlk_zftp_client_connect.cc.o
+
+src/client/zlk_zftp_client_connect.i: src/client/zlk_zftp_client_connect.cc.i
+
+.PHONY : src/client/zlk_zftp_client_connect.i
+
+# target to preprocess a source file
+src/client/zlk_zftp_client_connect.cc.i:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_zftp_client_connect.cc.i
+.PHONY : src/client/zlk_zftp_client_connect.cc.i
+
+src/client/zlk_zftp_client_connect.s: src/client/zlk_zftp_client_connect.cc.s
+
+.PHONY : src/client/zlk_zftp_client_connect.s
+
+# target to generate assembly for a file
+src/client/zlk_zftp_client_connect.cc.s:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/client/zlk_zftp_client_connect.cc.s
+.PHONY : src/client/zlk_zftp_client_connect.cc.s
 
 src/common/io_service_pool.o: src/common/io_service_pool.cc.o
 
@@ -129,7 +223,8 @@ src/common/io_service_pool.o: src/common/io_service_pool.cc.o
 
 # target to build an object file
 src/common/io_service_pool.cc.o:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/io_service_pool.cc.o
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/io_service_pool.cc.o
 .PHONY : src/common/io_service_pool.cc.o
 
 src/common/io_service_pool.i: src/common/io_service_pool.cc.i
@@ -138,7 +233,8 @@ src/common/io_service_pool.i: src/common/io_service_pool.cc.i
 
 # target to preprocess a source file
 src/common/io_service_pool.cc.i:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.i
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/io_service_pool.cc.i
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/io_service_pool.cc.i
 .PHONY : src/common/io_service_pool.cc.i
 
 src/common/io_service_pool.s: src/common/io_service_pool.cc.s
@@ -147,7 +243,8 @@ src/common/io_service_pool.s: src/common/io_service_pool.cc.s
 
 # target to generate assembly for a file
 src/common/io_service_pool.cc.s:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.s
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/io_service_pool.cc.s
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/io_service_pool.cc.s
 .PHONY : src/common/io_service_pool.cc.s
 
 src/common/zlk_message.pb.o: src/common/zlk_message.pb.cc.o
@@ -156,7 +253,8 @@ src/common/zlk_message.pb.o: src/common/zlk_message.pb.cc.o
 
 # target to build an object file
 src/common/zlk_message.pb.cc.o:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/zlk_message.pb.cc.o
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/zlk_message.pb.cc.o
 .PHONY : src/common/zlk_message.pb.cc.o
 
 src/common/zlk_message.pb.i: src/common/zlk_message.pb.cc.i
@@ -165,7 +263,8 @@ src/common/zlk_message.pb.i: src/common/zlk_message.pb.cc.i
 
 # target to preprocess a source file
 src/common/zlk_message.pb.cc.i:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.i
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/zlk_message.pb.cc.i
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/zlk_message.pb.cc.i
 .PHONY : src/common/zlk_message.pb.cc.i
 
 src/common/zlk_message.pb.s: src/common/zlk_message.pb.cc.s
@@ -174,35 +273,36 @@ src/common/zlk_message.pb.s: src/common/zlk_message.pb.cc.s
 
 # target to generate assembly for a file
 src/common/zlk_message.pb.cc.s:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.s
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/src/common/zlk_message.pb.cc.s
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/common/zlk_message.pb.cc.s
 .PHONY : src/common/zlk_message.pb.cc.s
 
-src/server/zftp_handmessage.o: src/server/zftp_handmessage.cc.o
+src/server/zftp_server_handmessage.o: src/server/zftp_server_handmessage.cc.o
 
-.PHONY : src/server/zftp_handmessage.o
+.PHONY : src/server/zftp_server_handmessage.o
 
 # target to build an object file
-src/server/zftp_handmessage.cc.o:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o
-.PHONY : src/server/zftp_handmessage.cc.o
+src/server/zftp_server_handmessage.cc.o:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zftp_server_handmessage.cc.o
+.PHONY : src/server/zftp_server_handmessage.cc.o
 
-src/server/zftp_handmessage.i: src/server/zftp_handmessage.cc.i
+src/server/zftp_server_handmessage.i: src/server/zftp_server_handmessage.cc.i
 
-.PHONY : src/server/zftp_handmessage.i
+.PHONY : src/server/zftp_server_handmessage.i
 
 # target to preprocess a source file
-src/server/zftp_handmessage.cc.i:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.i
-.PHONY : src/server/zftp_handmessage.cc.i
+src/server/zftp_server_handmessage.cc.i:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zftp_server_handmessage.cc.i
+.PHONY : src/server/zftp_server_handmessage.cc.i
 
-src/server/zftp_handmessage.s: src/server/zftp_handmessage.cc.s
+src/server/zftp_server_handmessage.s: src/server/zftp_server_handmessage.cc.s
 
-.PHONY : src/server/zftp_handmessage.s
+.PHONY : src/server/zftp_server_handmessage.s
 
 # target to generate assembly for a file
-src/server/zftp_handmessage.cc.s:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.s
-.PHONY : src/server/zftp_handmessage.cc.s
+src/server/zftp_server_handmessage.cc.s:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zftp_server_handmessage.cc.s
+.PHONY : src/server/zftp_server_handmessage.cc.s
 
 src/server/zlk_ftp_server.o: src/server/zlk_ftp_server.cc.o
 
@@ -210,7 +310,7 @@ src/server/zlk_ftp_server.o: src/server/zlk_ftp_server.cc.o
 
 # target to build an object file
 src/server/zlk_ftp_server.cc.o:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_ftp_server.cc.o
 .PHONY : src/server/zlk_ftp_server.cc.o
 
 src/server/zlk_ftp_server.i: src/server/zlk_ftp_server.cc.i
@@ -219,7 +319,7 @@ src/server/zlk_ftp_server.i: src/server/zlk_ftp_server.cc.i
 
 # target to preprocess a source file
 src/server/zlk_ftp_server.cc.i:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.i
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_ftp_server.cc.i
 .PHONY : src/server/zlk_ftp_server.cc.i
 
 src/server/zlk_ftp_server.s: src/server/zlk_ftp_server.cc.s
@@ -228,35 +328,35 @@ src/server/zlk_ftp_server.s: src/server/zlk_ftp_server.cc.s
 
 # target to generate assembly for a file
 src/server/zlk_ftp_server.cc.s:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.s
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_ftp_server.cc.s
 .PHONY : src/server/zlk_ftp_server.cc.s
 
-src/server/zlk_zftp_connect.o: src/server/zlk_zftp_connect.cc.o
+src/server/zlk_zftp_server_connect.o: src/server/zlk_zftp_server_connect.cc.o
 
-.PHONY : src/server/zlk_zftp_connect.o
+.PHONY : src/server/zlk_zftp_server_connect.o
 
 # target to build an object file
-src/server/zlk_zftp_connect.cc.o:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o
-.PHONY : src/server/zlk_zftp_connect.cc.o
+src/server/zlk_zftp_server_connect.cc.o:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o
+.PHONY : src/server/zlk_zftp_server_connect.cc.o
 
-src/server/zlk_zftp_connect.i: src/server/zlk_zftp_connect.cc.i
+src/server/zlk_zftp_server_connect.i: src/server/zlk_zftp_server_connect.cc.i
 
-.PHONY : src/server/zlk_zftp_connect.i
+.PHONY : src/server/zlk_zftp_server_connect.i
 
 # target to preprocess a source file
-src/server/zlk_zftp_connect.cc.i:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.i
-.PHONY : src/server/zlk_zftp_connect.cc.i
+src/server/zlk_zftp_server_connect.cc.i:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_zftp_server_connect.cc.i
+.PHONY : src/server/zlk_zftp_server_connect.cc.i
 
-src/server/zlk_zftp_connect.s: src/server/zlk_zftp_connect.cc.s
+src/server/zlk_zftp_server_connect.s: src/server/zlk_zftp_server_connect.cc.s
 
-.PHONY : src/server/zlk_zftp_connect.s
+.PHONY : src/server/zlk_zftp_server_connect.s
 
 # target to generate assembly for a file
-src/server/zlk_zftp_connect.cc.s:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.s
-.PHONY : src/server/zlk_zftp_connect.cc.s
+src/server/zlk_zftp_server_connect.cc.s:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/src/server/zlk_zftp_server_connect.cc.s
+.PHONY : src/server/zlk_zftp_server_connect.cc.s
 
 # Help Target
 help:
@@ -266,22 +366,32 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... zlk_zftp_server"
+	@echo "... zftp_client"
+	@echo "... zftp_server"
+	@echo "... src/client/zftp_client_handmessage.o"
+	@echo "... src/client/zftp_client_handmessage.i"
+	@echo "... src/client/zftp_client_handmessage.s"
+	@echo "... src/client/zlk_ftp_client.o"
+	@echo "... src/client/zlk_ftp_client.i"
+	@echo "... src/client/zlk_ftp_client.s"
+	@echo "... src/client/zlk_zftp_client_connect.o"
+	@echo "... src/client/zlk_zftp_client_connect.i"
+	@echo "... src/client/zlk_zftp_client_connect.s"
 	@echo "... src/common/io_service_pool.o"
 	@echo "... src/common/io_service_pool.i"
 	@echo "... src/common/io_service_pool.s"
 	@echo "... src/common/zlk_message.pb.o"
 	@echo "... src/common/zlk_message.pb.i"
 	@echo "... src/common/zlk_message.pb.s"
-	@echo "... src/server/zftp_handmessage.o"
-	@echo "... src/server/zftp_handmessage.i"
-	@echo "... src/server/zftp_handmessage.s"
+	@echo "... src/server/zftp_server_handmessage.o"
+	@echo "... src/server/zftp_server_handmessage.i"
+	@echo "... src/server/zftp_server_handmessage.s"
 	@echo "... src/server/zlk_ftp_server.o"
 	@echo "... src/server/zlk_ftp_server.i"
 	@echo "... src/server/zlk_ftp_server.s"
-	@echo "... src/server/zlk_zftp_connect.o"
-	@echo "... src/server/zlk_zftp_connect.i"
-	@echo "... src/server/zlk_zftp_connect.s"
+	@echo "... src/server/zlk_zftp_server_connect.o"
+	@echo "... src/server/zlk_zftp_server_connect.i"
+	@echo "... src/server/zlk_zftp_server_connect.s"
 .PHONY : help
 
 

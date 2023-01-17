@@ -44,16 +44,17 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/git/Cpp/exe/zftp
+CMAKE_SOURCE_DIR = /root/wm/git/Cpp/exe/zftp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/git/Cpp/exe/zftp
+CMAKE_BINARY_DIR = /root/wm/git/Cpp/exe/zftp
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/zlk_zftp_server.dir/all
+all: CMakeFiles/zftp_client.dir/all
+all: CMakeFiles/zftp_server.dir/all
 
 .PHONY : all
 
@@ -63,36 +64,64 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/zlk_zftp_server.dir/clean
+clean: CMakeFiles/zftp_client.dir/clean
+clean: CMakeFiles/zftp_server.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/zlk_zftp_server.dir
+# Target rules for target CMakeFiles/zftp_client.dir
 
 # All Build rule for target.
-CMakeFiles/zlk_zftp_server.dir/all:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/depend
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target zlk_zftp_server"
-.PHONY : CMakeFiles/zlk_zftp_server.dir/all
+CMakeFiles/zftp_client.dir/all:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/depend
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target zftp_client"
+.PHONY : CMakeFiles/zftp_client.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/zlk_zftp_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/exe/zftp/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/zlk_zftp_server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/exe/zftp/CMakeFiles 0
-.PHONY : CMakeFiles/zlk_zftp_server.dir/rule
+CMakeFiles/zftp_client.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/zftp_client.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles 0
+.PHONY : CMakeFiles/zftp_client.dir/rule
 
 # Convenience name for target.
-zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/rule
+zftp_client: CMakeFiles/zftp_client.dir/rule
 
-.PHONY : zlk_zftp_server
+.PHONY : zftp_client
 
 # clean rule for target.
-CMakeFiles/zlk_zftp_server.dir/clean:
-	$(MAKE) -f CMakeFiles/zlk_zftp_server.dir/build.make CMakeFiles/zlk_zftp_server.dir/clean
-.PHONY : CMakeFiles/zlk_zftp_server.dir/clean
+CMakeFiles/zftp_client.dir/clean:
+	$(MAKE) -f CMakeFiles/zftp_client.dir/build.make CMakeFiles/zftp_client.dir/clean
+.PHONY : CMakeFiles/zftp_client.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/zftp_server.dir
+
+# All Build rule for target.
+CMakeFiles/zftp_server.dir/all:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/depend
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target zftp_server"
+.PHONY : CMakeFiles/zftp_server.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/zftp_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/zftp_server.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/exe/zftp/CMakeFiles 0
+.PHONY : CMakeFiles/zftp_server.dir/rule
+
+# Convenience name for target.
+zftp_server: CMakeFiles/zftp_server.dir/rule
+
+.PHONY : zftp_server
+
+# clean rule for target.
+CMakeFiles/zftp_server.dir/clean:
+	$(MAKE) -f CMakeFiles/zftp_server.dir/build.make CMakeFiles/zftp_server.dir/clean
+.PHONY : CMakeFiles/zftp_server.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

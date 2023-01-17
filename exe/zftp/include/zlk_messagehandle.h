@@ -10,11 +10,11 @@ enum class zlkMsg
     pull,
     push
 };
-using zlk_msg_func = std::function<void(const zftp_message::Pakcet &packet, zftp_message::response_msg &zlk_res)>;
+using zlk_msg_func = std::function<void(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)>;
 
 class zlk_messagehandle
 {
 public:
-       std::map<zlkMsg, zlk_msg_func> m_mapFunc;
+    std::map<zlkMsg, zlk_msg_func> m_mapFunc;
 };
 #endif

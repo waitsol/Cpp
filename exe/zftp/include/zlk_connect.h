@@ -66,29 +66,51 @@ protected:
         }
         char *msg = new char[bytes_transferred];
         memcpy(msg, buffer_.data(), bytes_transferred);
+
+        // 调用虚函数 不同的服务连接处理不一样
         hand_message(msg, bytes_transferred);
         read_header();
     }
+
+public:
+    //
     int send_message(const char *msg, int sz)
     {
-        m_sock->async_send(boost::asio::buffer(msg, sz), boost::bind(&zlk_connect::send_message_callback,
-                                                                     this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+        int_to_array(sz, send_buffer_.c_array());
+        memcpy(send_buffer_.c_array() + 4, msg, sz);
+        // 4是包头
+        m_sock->async_send(boost::asio::buffer(send_buffer_, sz + 4), boost::bind(&zlk_connect::send_message_callback,
+                                                                                  this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
         return 1;
     }
+
+private:
     void send_message_callback(const boost::system::error_code &ec, std::size_t bytes_transferred)
     {
         if (ec)
         {
-            ERR("send_message failed err = %s", ec.what());
+            ERR("send_message failed err = %s", ec.message());
         }
+        DBG("send_message sz = %d", bytes_transferred);
     }
 
 protected:
     virtual void hand_message(char *msg, int sz) = 0;
 
 private:
+    void int_to_array(int sz, char *p)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            p[i] = (sz & 0xff);
+            sz >>= 8;
+        }
+    }
+
+private:
     boost::shared_ptr<boost::asio::ip::tcp::socket> m_sock;
     boost::array<char, 81900> buffer_;
+    boost::array<char, 81900> send_buffer_;
     boost::array<char, 4> header_buffer_;
 };
 

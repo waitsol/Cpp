@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC   -std=gnu++11
 
 CXX_DEFINES = -Dzlk_log_EXPORTS
 
-CXX_INCLUDES = -I/root/git/Cpp/lib/log/include 
+CXX_INCLUDES = -I/root/wm/git/Cpp/lib/log/include 
 

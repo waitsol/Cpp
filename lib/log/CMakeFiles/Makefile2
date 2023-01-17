@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/git/Cpp/lib/log
+CMAKE_SOURCE_DIR = /root/wm/git/Cpp/lib/log
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/git/Cpp/lib/log
+CMAKE_BINARY_DIR = /root/wm/git/Cpp/lib/log
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -76,14 +76,14 @@ clean: CMakeFiles/zlk_log.dir/clean
 CMakeFiles/main.dir/all: CMakeFiles/zlk_log.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/git/Cpp/lib/log/CMakeFiles --progress-num=1,2 "Built target main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/wm/git/Cpp/lib/log/CMakeFiles --progress-num=1,2 "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/lib/log/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/lib/log/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/lib/log/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/lib/log/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
 
 # Convenience name for target.
@@ -103,14 +103,14 @@ CMakeFiles/main.dir/clean:
 CMakeFiles/zlk_log.dir/all:
 	$(MAKE) -f CMakeFiles/zlk_log.dir/build.make CMakeFiles/zlk_log.dir/depend
 	$(MAKE) -f CMakeFiles/zlk_log.dir/build.make CMakeFiles/zlk_log.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/git/Cpp/lib/log/CMakeFiles --progress-num=3,4 "Built target zlk_log"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/wm/git/Cpp/lib/log/CMakeFiles --progress-num=3,4 "Built target zlk_log"
 .PHONY : CMakeFiles/zlk_log.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/zlk_log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/lib/log/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/lib/log/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/zlk_log.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/git/Cpp/lib/log/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/wm/git/Cpp/lib/log/CMakeFiles 0
 .PHONY : CMakeFiles/zlk_log.dir/rule
 
 # Convenience name for target.

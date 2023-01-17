@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/git/Cpp/lib/log/src/main.cc" "/root/git/Cpp/lib/log/CMakeFiles/main.dir/src/main.cc.o"
+  "/root/wm/git/Cpp/lib/log/src/main.cc" "/root/wm/git/Cpp/lib/log/CMakeFiles/main.dir/src/main.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/root/git/Cpp/lib/log/CMakeFiles/zlk_log.dir/DependInfo.cmake"
+  "/root/wm/git/Cpp/lib/log/CMakeFiles/zlk_log.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

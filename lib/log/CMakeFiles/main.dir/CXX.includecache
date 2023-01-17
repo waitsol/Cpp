@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/root/git/Cpp/lib/log/src/main.cc
+/root/wm/git/Cpp/lib/log/src/main.cc
 zlk_log.h
-/root/git/Cpp/lib/log/src/zlk_log.h
+/root/wm/git/Cpp/lib/log/src/zlk_log.h
 set
 -
 map

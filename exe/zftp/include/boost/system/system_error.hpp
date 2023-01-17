@@ -26,13 +26,13 @@ private:
 public:
 
     explicit system_error( error_code const & ec ):
-        std::runtime_error( ec.what() ), code_( ec ) {}
+        std::runtime_error( ec.message() ), code_( ec ) {}
 
     system_error( error_code const & ec, std::string const & prefix ):
-        std::runtime_error( prefix + ": " + ec.what() ), code_( ec ) {}
+        std::runtime_error( prefix + ": " + ec.message() ), code_( ec ) {}
 
     system_error( error_code const & ec, char const * prefix ):
-        std::runtime_error( std::string( prefix ) + ": " + ec.what() ), code_( ec ) {}
+        std::runtime_error( std::string( prefix ) + ": " + ec.message() ), code_( ec ) {}
 
     system_error( int ev, error_category const & ecat ):
         std::runtime_error( error_code( ev, ecat ).what() ), code_( ev, ecat ) {}

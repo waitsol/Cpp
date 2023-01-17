@@ -29,7 +29,7 @@ enum zlk_logmode : int
 class zlk_log
 {
 public:
-    void init(string fileName, int buffsize, bool multithread = false, zlk_logmode print_level = zlk_logmode_err);
+    void init(string fileName, int buffsize, bool multithread = false, zlk_logmode print_level = zlk_logmode_debug);
     void write(zlk_logmode mode, const char *pszFormat, ...);
     static zlk_log &getInstance();
     void debug()

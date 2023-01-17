@@ -1,4 +1,4 @@
-# Install script for directory: /root/git/Cpp/exe/zftp
+# Install script for directory: /root/wm/git/Cpp/exe/zftp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/root/git/Cpp/exe/zftp/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/root/wm/git/Cpp/exe/zftp/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

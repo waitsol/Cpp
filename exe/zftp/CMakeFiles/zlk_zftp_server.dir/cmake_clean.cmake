@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o"
   "CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o"
-  "CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o"
+  "CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o"
   "CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o"
-  "CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o"
+  "CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o"
   "zlk_zftp_server"
   "zlk_zftp_server.pdb"
 )

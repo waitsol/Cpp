@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/git/Cpp/exe/zftp
+CMAKE_SOURCE_DIR = /root/wm/git/Cpp/exe/zftp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/git/Cpp/exe/zftp
+CMAKE_BINARY_DIR = /root/wm/git/Cpp/exe/zftp
 
 # Include any dependencies generated for this target.
 include CMakeFiles/zlk_zftp_server.dir/depend.make
@@ -57,90 +57,90 @@ include CMakeFiles/zlk_zftp_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/zlk_zftp_server.dir/flags.make
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
-CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o: src/server/zftp_handmessage.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o -c /root/git/Cpp/exe/zftp/src/server/zftp_handmessage.cc
+CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
+CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o: src/server/zftp_server_handmessage.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o -c /root/wm/git/Cpp/exe/zftp/src/server/zftp_server_handmessage.cc
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/git/Cpp/exe/zftp/src/server/zftp_handmessage.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.i
+CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/wm/git/Cpp/exe/zftp/src/server/zftp_server_handmessage.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.i
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/git/Cpp/exe/zftp/src/server/zftp_handmessage.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.s
+CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/wm/git/Cpp/exe/zftp/src/server/zftp_server_handmessage.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.s
 
 CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
 CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o: src/server/zlk_ftp_server.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o -c /root/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o -c /root/wm/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc
 
 CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/wm/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.i
 
 CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/wm/git/Cpp/exe/zftp/src/server/zlk_ftp_server.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.s
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
-CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o: src/server/zlk_zftp_connect.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o -c /root/git/Cpp/exe/zftp/src/server/zlk_zftp_connect.cc
+CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
+CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o: src/server/zlk_zftp_server_connect.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o -c /root/wm/git/Cpp/exe/zftp/src/server/zlk_zftp_server_connect.cc
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/git/Cpp/exe/zftp/src/server/zlk_zftp_connect.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.i
+CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/wm/git/Cpp/exe/zftp/src/server/zlk_zftp_server_connect.cc > CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.i
 
-CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/git/Cpp/exe/zftp/src/server/zlk_zftp_connect.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.s
+CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/wm/git/Cpp/exe/zftp/src/server/zlk_zftp_server_connect.cc -o CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.s
 
 CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
 CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o: src/common/io_service_pool.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o -c /root/git/Cpp/exe/zftp/src/common/io_service_pool.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o -c /root/wm/git/Cpp/exe/zftp/src/common/io_service_pool.cc
 
 CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/git/Cpp/exe/zftp/src/common/io_service_pool.cc > CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/wm/git/Cpp/exe/zftp/src/common/io_service_pool.cc > CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.i
 
 CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/git/Cpp/exe/zftp/src/common/io_service_pool.cc -o CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/wm/git/Cpp/exe/zftp/src/common/io_service_pool.cc -o CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.s
 
 CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o: CMakeFiles/zlk_zftp_server.dir/flags.make
 CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o: src/common/zlk_message.pb.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o -c /root/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o -c /root/wm/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc
 
 CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc > CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/wm/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc > CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.i
 
 CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc -o CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/wm/git/Cpp/exe/zftp/src/common/zlk_message.pb.cc -o CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.s
 
 # Object files for target zlk_zftp_server
 zlk_zftp_server_OBJECTS = \
-"CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o" \
+"CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o" \
 "CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o" \
-"CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o" \
+"CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o" \
 "CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o" \
 "CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o"
 
 # External object files for target zlk_zftp_server
 zlk_zftp_server_EXTERNAL_OBJECTS =
 
-zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/server/zftp_handmessage.cc.o
+zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/server/zftp_server_handmessage.cc.o
 zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/server/zlk_ftp_server.cc.o
-zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_connect.cc.o
+zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/server/zlk_zftp_server_connect.cc.o
 zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/common/io_service_pool.cc.o
 zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/src/common/zlk_message.pb.cc.o
 zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/build.make
 zlk_zftp_server: CMakeFiles/zlk_zftp_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable zlk_zftp_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/wm/git/Cpp/exe/zftp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable zlk_zftp_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/zlk_zftp_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -153,6 +153,6 @@ CMakeFiles/zlk_zftp_server.dir/clean:
 .PHONY : CMakeFiles/zlk_zftp_server.dir/clean
 
 CMakeFiles/zlk_zftp_server.dir/depend:
-	cd /root/git/Cpp/exe/zftp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/git/Cpp/exe/zftp /root/git/Cpp/exe/zftp /root/git/Cpp/exe/zftp /root/git/Cpp/exe/zftp /root/git/Cpp/exe/zftp/CMakeFiles/zlk_zftp_server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /root/wm/git/Cpp/exe/zftp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/wm/git/Cpp/exe/zftp /root/wm/git/Cpp/exe/zftp /root/wm/git/Cpp/exe/zftp /root/wm/git/Cpp/exe/zftp /root/wm/git/Cpp/exe/zftp/CMakeFiles/zlk_zftp_server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/zlk_zftp_server.dir/depend
 

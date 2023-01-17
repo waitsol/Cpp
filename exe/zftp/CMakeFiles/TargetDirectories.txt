@@ -1,3 +1,4 @@
-/root/git/Cpp/exe/zftp/CMakeFiles/rebuild_cache.dir
-/root/git/Cpp/exe/zftp/CMakeFiles/edit_cache.dir
-/root/git/Cpp/exe/zftp/CMakeFiles/zlk_zftp_server.dir
+/root/wm/git/Cpp/exe/zftp/CMakeFiles/rebuild_cache.dir
+/root/wm/git/Cpp/exe/zftp/CMakeFiles/edit_cache.dir
+/root/wm/git/Cpp/exe/zftp/CMakeFiles/zftp_client.dir
+/root/wm/git/Cpp/exe/zftp/CMakeFiles/zftp_server.dir
