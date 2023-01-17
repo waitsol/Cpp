@@ -13,11 +13,11 @@ extern "C"
 #include "zlk_lua.h"
 
 /* 遍历一维表 */
-static void table_traverse(string fileName, unordered_map<string,strng> m)
+static void table_traverse(string fileName, unordered_map<string, string> m)
 {
-    lua_State *L=lua_newstate();
+    lua_State *L = luaL_newstate();
     luaL_openlibs(L);
-    luaL_loadfile(L,fileName);
+    luaL_loadfile(L, fileName.data());
     lua_pushnil(L); /* table 里第一对 key-value 的前面没有数据，所以先用 lua_pushnil() 压入一个 nil 充当初始 key */
 
     while (lua_next(L, -2))
@@ -25,10 +25,10 @@ static void table_traverse(string fileName, unordered_map<string,strng> m)
         // std::cout << "---Loop start: Stack size = " << lua_gettop(L) << std::endl;
         //   printluaTopType(L);
         /* 输出key */
-        string key,val;
+        string key, val;
         if (lua_isnumber(L, -2))
         {
-            ley = to_string(lua_tonumber(L, -2));
+            key = to_string(lua_tonumber(L, -2));
         }
         else if (lua_isstring(L, -2))
         {
@@ -54,7 +54,7 @@ static void table_traverse(string fileName, unordered_map<string,strng> m)
         {
             std::cout << "Error val type!" << std::endl;
         }
-        m[key]=val;
+        m[key] = val;
     }
 
     lua_pop(L, 1);

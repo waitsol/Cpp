@@ -8,10 +8,11 @@ project(zlk_zftp_server VERSION 1.0)
 
 include_directories("${CMAKE_BINARY_DIR}/include")
 include_directories("${CMAKE_BINARY_DIR}/../../lib/log/include")
-
+link_libraries("${CMAKE_BINARY_DIR}/lib")
 
 file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/include/*.h )
-file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/src/server/z.cpp )
+file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/src/server/*.cc )
+file(GLOB_RECURSE COMSRC  ${PROJECT_SOURCE_DIR}/src/common/*.cc )
 
-add_executable(${PROJECT_NAME}  ${SRC} ${CURRENT_HEADERS})
-target_link_libraries(${PROJECT_NAME}  "lua" "dl" "zlk_log" "pthread")
+add_executable(${PROJECT_NAME}  ${CURRENT_HEADERS} ${SRC} ${COMSRC})
+target_link_libraries(${PROJECT_NAME}  "lua" "dl" "zlk_log" "pthread" "boost_system" "boost_thread") 

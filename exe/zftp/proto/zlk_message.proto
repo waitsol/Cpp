@@ -1,0 +1,30 @@
+syntax = "proto3";
+package zftp_message;
+message Pakcet{
+    int32 msgId = 1;
+    string msgBody =2 ;
+}
+message mkdir_msg{
+    string data=1;
+}
+message rm_msg{
+    bool   force=1;
+    bool   recursion=2;
+    string file_name=3;
+}
+message pull_msg{
+    string name=1;
+}
+message pull_respon_msg{
+    bool  ok=1;
+    bytes data=2;
+}
+message push_msg{
+    bytes  data=1;
+    string name=2;
+    bool   force=3;
+}
+message response_msg{
+    bool ok =1;
+    string error=2;
+}
