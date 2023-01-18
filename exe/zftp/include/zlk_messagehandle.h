@@ -8,7 +8,10 @@ enum class zlkMsg
     rm,
     ls,
     pull,
-    push
+    push,
+    cd,
+    mkdir,
+    pwd,
 };
 using zlk_msg_func = std::function<void(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)>;
 

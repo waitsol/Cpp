@@ -40,9 +40,11 @@ void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &
 int main()
 {
     zlk_log::getInstance().init("", 1, 1, zlk_logmode_debug);
-    g_server = new Server();
-    g_server->regist();
+
     io_service_pool isp(2);
+
+    g_server = new Server(isp);
+    g_server->regist();
     zlk_boost_socket s(isp);
     s.bind();
     s.accept();

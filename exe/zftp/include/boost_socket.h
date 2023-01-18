@@ -54,7 +54,7 @@ private:
         }
 
         DBG("new connect ip = %s  port = %d\n", sock->remote_endpoint().address().to_string().data(), sock->remote_endpoint().port());
-        m_io_service_pool.get_io_service().post(boost::bind(&Server::post, g_server, sock));
+        m_io_service_pool.get_acceptor_io_service().post(boost::bind(&Server::post, g_server, sock));
     }
     void handle_connect(const boost::system::error_code &ec, boost::shared_ptr<tcp::socket> sock)
     {

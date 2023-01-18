@@ -10,15 +10,17 @@
 #include <boost/chrono.hpp>
 #include <boost/thread.hpp>
 #include "zlk_log.h"
-
+#define _10MB 1024 * 1024 * 10
 class zlk_connect
 {
 public:
-    zlk_connect(boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : m_sock(sock)
+    zlk_connect(int uid, boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : _uid(uid), m_sock(sock)
     {
+        _end = 0;
     }
     void read_header()
     {
+        _end = _offset = 0;
         memset(header_buffer_.data(), 0, header_buffer_.size());
         m_sock->async_receive(boost::asio::buffer(header_buffer_, 4), boost::bind(&zlk_connect::read_body,
                                                                                   this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
@@ -44,14 +46,16 @@ protected:
             read_header();
             return;
         }
-        int sz = *(int *)header_buffer_.c_array();
-        DBG("header sz = %d\n", sz);
-        m_sock->async_receive(boost::asio::buffer(buffer_), boost::bind(&zlk_connect::handle_body,
-                                                                        this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+
+        _end = *(int *)header_buffer_.c_array();
+        _offset = 0;
+        DBG("header sz = %d\n", _end);
+
+        m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
+                                                                                                         this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
     }
     void handle_body(const boost::system::error_code &ec, std::size_t bytes_transferred)
     {
-        DBG("bytes_transferred = %d", bytes_transferred);
 
         if (ec)
         {
@@ -64,12 +68,36 @@ protected:
             ERR("socket disconnect");
             return;
         }
-        char *msg = new char[bytes_transferred];
-        memcpy(msg, buffer_.data(), bytes_transferred);
+        _offset += bytes_transferred;
+        DBG("bytes_transferred = %d _offset = %d", bytes_transferred, _offset);
 
-        // 调用虚函数 不同的服务连接处理不一样
-        hand_message(msg, bytes_transferred);
-        read_header();
+        if (_offset >= _end)
+        {
+            char *msg = new char[_end];
+            memcpy(msg, buffer_.data(), _end);
+
+            // 调用虚函数 不同的服务连接处理不一样
+            hand_message(msg, _end);
+            int d = _offset - _end;
+            if (d >= 4)
+            {
+                int tmp = _end;
+                _end = *(int *)(header_buffer_.c_array() + tmp);
+                _offset = d - 4;
+                memcpy(header_buffer_.c_array(), header_buffer_.c_array() + tmp, _offset);
+                m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
+                                                                                                                 this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+            }
+            else
+            {
+                read_header();
+            }
+        }
+        else
+        {
+            m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
+                                                                                                             this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+        }
     }
 
 public:
@@ -94,7 +122,7 @@ private:
         DBG("send_message sz = %d", bytes_transferred);
     }
 
-protected:
+public:
     virtual void hand_message(char *msg, int sz) = 0;
 
 private:
@@ -107,11 +135,16 @@ private:
         }
     }
 
+protected:
+    int _uid;
+
 private:
     boost::shared_ptr<boost::asio::ip::tcp::socket> m_sock;
-    boost::array<char, 81900> buffer_;
-    boost::array<char, 81900> send_buffer_;
+    boost::array<char, _10MB> buffer_;
+    boost::array<char, _10MB> send_buffer_;
     boost::array<char, 4> header_buffer_;
+    int _offset;
+    int _end;
 };
 
 #endif

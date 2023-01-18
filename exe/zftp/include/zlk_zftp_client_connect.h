@@ -5,7 +5,10 @@
 class zlk_zftp_client_connect : public zlk_connect
 {
 public:
-    zlk_zftp_client_connect(boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : zlk_connect(sock) {}
+    zlk_zftp_client_connect(boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : zlk_connect(0, sock) {}
     void hand_message(char *p, int sz) override;
+
+private:
+    void _hand_message(char *p, int sz);
 };
 #endif

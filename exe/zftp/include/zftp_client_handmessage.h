@@ -11,6 +11,10 @@ public:
     void hand_pull(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res);
     void hand_push(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res);
 
+    void hand_pwd(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res);
+    void hand_mkdir(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res);
+    void hand_cd(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res);
+
 protected:
 };
 

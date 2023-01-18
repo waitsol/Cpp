@@ -53,7 +53,7 @@ vector<string> getFiles(string path, bool dg = false)
 #include <stdlib.h>
 #include <string>
 
-vector<string> getFiles(string path)
+static vector<string> getFiles(string path)
 {
     DIR *pDir;
     struct dirent *ptr;

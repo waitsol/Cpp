@@ -5,7 +5,14 @@
 class zlk_zftp_server_connect : public zlk_connect
 {
 public:
-    zlk_zftp_server_connect(boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : zlk_connect(sock) {}
+    zlk_zftp_server_connect(int uid, boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : zlk_connect(uid, sock), _login(false) {}
     void hand_message(char *p, int sz) override;
+    void set_login();
+
+private:
+    bool is_login();
+   void _hand_message(char *p, int sz);
+private:
+    bool _login;
 };
 #endif

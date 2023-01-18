@@ -48,6 +48,9 @@ namespace zftp_message {
 class Pakcet;
 struct PakcetDefaultTypeInternal;
 extern PakcetDefaultTypeInternal _Pakcet_default_instance_;
+class cd_msg;
+struct cd_msgDefaultTypeInternal;
+extern cd_msgDefaultTypeInternal _cd_msg_default_instance_;
 class ls_msg;
 struct ls_msgDefaultTypeInternal;
 extern ls_msgDefaultTypeInternal _ls_msg_default_instance_;
@@ -78,6 +81,7 @@ extern rm_msgDefaultTypeInternal _rm_msg_default_instance_;
 }  // namespace zftp_message
 PROTOBUF_NAMESPACE_OPEN
 template<> ::zftp_message::Pakcet* Arena::CreateMaybeMessage<::zftp_message::Pakcet>(Arena*);
+template<> ::zftp_message::cd_msg* Arena::CreateMaybeMessage<::zftp_message::cd_msg>(Arena*);
 template<> ::zftp_message::ls_msg* Arena::CreateMaybeMessage<::zftp_message::ls_msg>(Arena*);
 template<> ::zftp_message::ls_response* Arena::CreateMaybeMessage<::zftp_message::ls_response>(Arena*);
 template<> ::zftp_message::ls_response_node* Arena::CreateMaybeMessage<::zftp_message::ls_response_node>(Arena*);
@@ -213,10 +217,11 @@ class Pakcet final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMsgBodyFieldNumber = 2,
+    kMsgBodyFieldNumber = 3,
     kMsgIdFieldNumber = 1,
+    kIdFieldNumber = 2,
   };
-  // string msgBody = 2;
+  // bytes msgBody = 3;
   void clear_msgbody();
   const std::string& msgbody() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -239,6 +244,15 @@ class Pakcet final :
   void _internal_set_msgid(int32_t value);
   public:
 
+  // int32 id = 2;
+  void clear_id();
+  int32_t id() const;
+  void set_id(int32_t value);
+  private:
+  int32_t _internal_id() const;
+  void _internal_set_id(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.Pakcet)
  private:
   class _Internal;
@@ -249,6 +263,7 @@ class Pakcet final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr msgbody_;
     int32_t msgid_;
+    int32_t id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -409,6 +424,159 @@ class mkdir_msg final :
 };
 // -------------------------------------------------------------------
 
+class cd_msg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:zftp_message.cd_msg) */ {
+ public:
+  inline cd_msg() : cd_msg(nullptr) {}
+  ~cd_msg() override;
+  explicit PROTOBUF_CONSTEXPR cd_msg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  cd_msg(const cd_msg& from);
+  cd_msg(cd_msg&& from) noexcept
+    : cd_msg() {
+    *this = ::std::move(from);
+  }
+
+  inline cd_msg& operator=(const cd_msg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline cd_msg& operator=(cd_msg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const cd_msg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const cd_msg* internal_default_instance() {
+    return reinterpret_cast<const cd_msg*>(
+               &_cd_msg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(cd_msg& a, cd_msg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(cd_msg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(cd_msg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  cd_msg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<cd_msg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const cd_msg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const cd_msg& from) {
+    cd_msg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(cd_msg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "zftp_message.cd_msg";
+  }
+  protected:
+  explicit cd_msg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDirFieldNumber = 1,
+  };
+  // string dir = 1;
+  void clear_dir();
+  const std::string& dir() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dir(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dir();
+  PROTOBUF_NODISCARD std::string* release_dir();
+  void set_allocated_dir(std::string* dir);
+  private:
+  const std::string& _internal_dir() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dir(const std::string& value);
+  std::string* _internal_mutable_dir();
+  public:
+
+  // @@protoc_insertion_point(class_scope:zftp_message.cd_msg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dir_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_zlk_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class ls_msg final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:zftp_message.ls_msg) */ {
  public:
@@ -457,7 +625,7 @@ class ls_msg final :
                &_ls_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(ls_msg& a, ls_msg& b) {
     a.Swap(&b);
@@ -610,7 +778,7 @@ class ls_response_node final :
                &_ls_response_node_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(ls_response_node& a, ls_response_node& b) {
     a.Swap(&b);
@@ -683,10 +851,11 @@ class ls_response_node final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 2,
+    kNameFieldNumber = 3,
     kIdFieldNumber = 1,
+    kTypeFieldNumber = 2,
   };
-  // string name = 2;
+  // string name = 3;
   void clear_name();
   const std::string& name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -709,6 +878,15 @@ class ls_response_node final :
   void _internal_set_id(int32_t value);
   public:
 
+  // int32 type = 2;
+  void clear_type();
+  int32_t type() const;
+  void set_type(int32_t value);
+  private:
+  int32_t _internal_type() const;
+  void _internal_set_type(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.ls_response.node)
  private:
   class _Internal;
@@ -719,6 +897,7 @@ class ls_response_node final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     int32_t id_;
+    int32_t type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -774,7 +953,7 @@ class ls_response final :
                &_ls_response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(ls_response& a, ls_response& b) {
     a.Swap(&b);
@@ -850,6 +1029,8 @@ class ls_response final :
 
   enum : int {
     kListFieldNumber = 1,
+    kErrorFieldNumber = 3,
+    kOkFieldNumber = 2,
   };
   // repeated .zftp_message.ls_response.node list = 1;
   int list_size() const;
@@ -869,6 +1050,29 @@ class ls_response final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::zftp_message::ls_response_node >&
       list() const;
 
+  // string error = 3;
+  void clear_error();
+  const std::string& error() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_error(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error();
+  PROTOBUF_NODISCARD std::string* release_error();
+  void set_allocated_error(std::string* error);
+  private:
+  const std::string& _internal_error() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error(const std::string& value);
+  std::string* _internal_mutable_error();
+  public:
+
+  // int32 ok = 2;
+  void clear_ok();
+  int32_t ok() const;
+  void set_ok(int32_t value);
+  private:
+  int32_t _internal_ok() const;
+  void _internal_set_ok(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.ls_response)
  private:
   class _Internal;
@@ -878,6 +1082,8 @@ class ls_response final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::zftp_message::ls_response_node > list_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_;
+    int32_t ok_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -933,7 +1139,7 @@ class rm_msg final :
                &_rm_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(rm_msg& a, rm_msg& b) {
     a.Swap(&b);
@@ -1108,7 +1314,7 @@ class pull_msg final :
                &_pull_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(pull_msg& a, pull_msg& b) {
     a.Swap(&b);
@@ -1182,6 +1388,7 @@ class pull_msg final :
 
   enum : int {
     kNameFieldNumber = 1,
+    kDstNameFieldNumber = 2,
   };
   // string name = 1;
   void clear_name();
@@ -1197,6 +1404,20 @@ class pull_msg final :
   std::string* _internal_mutable_name();
   public:
 
+  // string dstName = 2;
+  void clear_dstname();
+  const std::string& dstname() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_dstname(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dstname();
+  PROTOBUF_NODISCARD std::string* release_dstname();
+  void set_allocated_dstname(std::string* dstname);
+  private:
+  const std::string& _internal_dstname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dstname(const std::string& value);
+  std::string* _internal_mutable_dstname();
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.pull_msg)
  private:
   class _Internal;
@@ -1206,6 +1427,7 @@ class pull_msg final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dstname_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1261,7 +1483,7 @@ class pull_respon_msg final :
                &_pull_respon_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(pull_respon_msg& a, pull_respon_msg& b) {
     a.Swap(&b);
@@ -1335,6 +1557,7 @@ class pull_respon_msg final :
 
   enum : int {
     kDataFieldNumber = 2,
+    kSaveNameFieldNumber = 3,
     kOkFieldNumber = 1,
   };
   // bytes data = 2;
@@ -1349,6 +1572,20 @@ class pull_respon_msg final :
   const std::string& _internal_data() const;
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(const std::string& value);
   std::string* _internal_mutable_data();
+  public:
+
+  // string save_name = 3;
+  void clear_save_name();
+  const std::string& save_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_save_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_save_name();
+  PROTOBUF_NODISCARD std::string* release_save_name();
+  void set_allocated_save_name(std::string* save_name);
+  private:
+  const std::string& _internal_save_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_save_name(const std::string& value);
+  std::string* _internal_mutable_save_name();
   public:
 
   // bool ok = 1;
@@ -1369,6 +1606,7 @@ class pull_respon_msg final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr save_name_;
     bool ok_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1425,7 +1663,7 @@ class push_msg final :
                &_push_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(push_msg& a, push_msg& b) {
     a.Swap(&b);
@@ -1499,7 +1737,7 @@ class push_msg final :
 
   enum : int {
     kDataFieldNumber = 1,
-    kNameFieldNumber = 2,
+    kDstNameFieldNumber = 2,
     kForceFieldNumber = 3,
   };
   // bytes data = 1;
@@ -1516,18 +1754,18 @@ class push_msg final :
   std::string* _internal_mutable_data();
   public:
 
-  // string name = 2;
-  void clear_name();
-  const std::string& name() const;
+  // string dst_name = 2;
+  void clear_dst_name();
+  const std::string& dst_name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  void set_dst_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_dst_name();
+  PROTOBUF_NODISCARD std::string* release_dst_name();
+  void set_allocated_dst_name(std::string* dst_name);
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  const std::string& _internal_dst_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dst_name(const std::string& value);
+  std::string* _internal_mutable_dst_name();
   public:
 
   // bool force = 3;
@@ -1548,7 +1786,7 @@ class push_msg final :
   typedef void DestructorSkippable_;
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dst_name_;
     bool force_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1605,7 +1843,7 @@ class response_msg final :
                &_response_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(response_msg& a, response_msg& b) {
     a.Swap(&b);
@@ -1750,7 +1988,27 @@ inline void Pakcet::set_msgid(int32_t value) {
   // @@protoc_insertion_point(field_set:zftp_message.Pakcet.msgId)
 }
 
-// string msgBody = 2;
+// int32 id = 2;
+inline void Pakcet::clear_id() {
+  _impl_.id_ = 0;
+}
+inline int32_t Pakcet::_internal_id() const {
+  return _impl_.id_;
+}
+inline int32_t Pakcet::id() const {
+  // @@protoc_insertion_point(field_get:zftp_message.Pakcet.id)
+  return _internal_id();
+}
+inline void Pakcet::_internal_set_id(int32_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void Pakcet::set_id(int32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:zftp_message.Pakcet.id)
+}
+
+// bytes msgBody = 3;
 inline void Pakcet::clear_msgbody() {
   _impl_.msgbody_.ClearToEmpty();
 }
@@ -1762,7 +2020,7 @@ template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
 void Pakcet::set_msgbody(ArgT0&& arg0, ArgT... args) {
  
- _impl_.msgbody_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+ _impl_.msgbody_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
   // @@protoc_insertion_point(field_set:zftp_message.Pakcet.msgBody)
 }
 inline std::string* Pakcet::mutable_msgbody() {
@@ -1856,6 +2114,60 @@ inline void mkdir_msg::set_allocated_data(std::string* data) {
 
 // -------------------------------------------------------------------
 
+// cd_msg
+
+// string dir = 1;
+inline void cd_msg::clear_dir() {
+  _impl_.dir_.ClearToEmpty();
+}
+inline const std::string& cd_msg::dir() const {
+  // @@protoc_insertion_point(field_get:zftp_message.cd_msg.dir)
+  return _internal_dir();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void cd_msg::set_dir(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.dir_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.cd_msg.dir)
+}
+inline std::string* cd_msg::mutable_dir() {
+  std::string* _s = _internal_mutable_dir();
+  // @@protoc_insertion_point(field_mutable:zftp_message.cd_msg.dir)
+  return _s;
+}
+inline const std::string& cd_msg::_internal_dir() const {
+  return _impl_.dir_.Get();
+}
+inline void cd_msg::_internal_set_dir(const std::string& value) {
+  
+  _impl_.dir_.Set(value, GetArenaForAllocation());
+}
+inline std::string* cd_msg::_internal_mutable_dir() {
+  
+  return _impl_.dir_.Mutable(GetArenaForAllocation());
+}
+inline std::string* cd_msg::release_dir() {
+  // @@protoc_insertion_point(field_release:zftp_message.cd_msg.dir)
+  return _impl_.dir_.Release();
+}
+inline void cd_msg::set_allocated_dir(std::string* dir) {
+  if (dir != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.dir_.SetAllocated(dir, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.dir_.IsDefault()) {
+    _impl_.dir_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.cd_msg.dir)
+}
+
+// -------------------------------------------------------------------
+
 // ls_msg
 
 // string data = 1;
@@ -1932,7 +2244,27 @@ inline void ls_response_node::set_id(int32_t value) {
   // @@protoc_insertion_point(field_set:zftp_message.ls_response.node.id)
 }
 
-// string name = 2;
+// int32 type = 2;
+inline void ls_response_node::clear_type() {
+  _impl_.type_ = 0;
+}
+inline int32_t ls_response_node::_internal_type() const {
+  return _impl_.type_;
+}
+inline int32_t ls_response_node::type() const {
+  // @@protoc_insertion_point(field_get:zftp_message.ls_response.node.type)
+  return _internal_type();
+}
+inline void ls_response_node::_internal_set_type(int32_t value) {
+  
+  _impl_.type_ = value;
+}
+inline void ls_response_node::set_type(int32_t value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:zftp_message.ls_response.node.type)
+}
+
+// string name = 3;
 inline void ls_response_node::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
@@ -2024,6 +2356,76 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::zftp_message::ls_respo
 ls_response::list() const {
   // @@protoc_insertion_point(field_list:zftp_message.ls_response.list)
   return _impl_.list_;
+}
+
+// int32 ok = 2;
+inline void ls_response::clear_ok() {
+  _impl_.ok_ = 0;
+}
+inline int32_t ls_response::_internal_ok() const {
+  return _impl_.ok_;
+}
+inline int32_t ls_response::ok() const {
+  // @@protoc_insertion_point(field_get:zftp_message.ls_response.ok)
+  return _internal_ok();
+}
+inline void ls_response::_internal_set_ok(int32_t value) {
+  
+  _impl_.ok_ = value;
+}
+inline void ls_response::set_ok(int32_t value) {
+  _internal_set_ok(value);
+  // @@protoc_insertion_point(field_set:zftp_message.ls_response.ok)
+}
+
+// string error = 3;
+inline void ls_response::clear_error() {
+  _impl_.error_.ClearToEmpty();
+}
+inline const std::string& ls_response::error() const {
+  // @@protoc_insertion_point(field_get:zftp_message.ls_response.error)
+  return _internal_error();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void ls_response::set_error(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.error_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.ls_response.error)
+}
+inline std::string* ls_response::mutable_error() {
+  std::string* _s = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:zftp_message.ls_response.error)
+  return _s;
+}
+inline const std::string& ls_response::_internal_error() const {
+  return _impl_.error_.Get();
+}
+inline void ls_response::_internal_set_error(const std::string& value) {
+  
+  _impl_.error_.Set(value, GetArenaForAllocation());
+}
+inline std::string* ls_response::_internal_mutable_error() {
+  
+  return _impl_.error_.Mutable(GetArenaForAllocation());
+}
+inline std::string* ls_response::release_error() {
+  // @@protoc_insertion_point(field_release:zftp_message.ls_response.error)
+  return _impl_.error_.Release();
+}
+inline void ls_response::set_allocated_error(std::string* error) {
+  if (error != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.error_.SetAllocated(error, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.error_.IsDefault()) {
+    _impl_.error_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.ls_response.error)
 }
 
 // -------------------------------------------------------------------
@@ -2174,6 +2576,56 @@ inline void pull_msg::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_msg.name)
 }
 
+// string dstName = 2;
+inline void pull_msg::clear_dstname() {
+  _impl_.dstname_.ClearToEmpty();
+}
+inline const std::string& pull_msg::dstname() const {
+  // @@protoc_insertion_point(field_get:zftp_message.pull_msg.dstName)
+  return _internal_dstname();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void pull_msg::set_dstname(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.dstname_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.pull_msg.dstName)
+}
+inline std::string* pull_msg::mutable_dstname() {
+  std::string* _s = _internal_mutable_dstname();
+  // @@protoc_insertion_point(field_mutable:zftp_message.pull_msg.dstName)
+  return _s;
+}
+inline const std::string& pull_msg::_internal_dstname() const {
+  return _impl_.dstname_.Get();
+}
+inline void pull_msg::_internal_set_dstname(const std::string& value) {
+  
+  _impl_.dstname_.Set(value, GetArenaForAllocation());
+}
+inline std::string* pull_msg::_internal_mutable_dstname() {
+  
+  return _impl_.dstname_.Mutable(GetArenaForAllocation());
+}
+inline std::string* pull_msg::release_dstname() {
+  // @@protoc_insertion_point(field_release:zftp_message.pull_msg.dstName)
+  return _impl_.dstname_.Release();
+}
+inline void pull_msg::set_allocated_dstname(std::string* dstname) {
+  if (dstname != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.dstname_.SetAllocated(dstname, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.dstname_.IsDefault()) {
+    _impl_.dstname_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_msg.dstName)
+}
+
 // -------------------------------------------------------------------
 
 // pull_respon_msg
@@ -2248,6 +2700,56 @@ inline void pull_respon_msg::set_allocated_data(std::string* data) {
   // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_respon_msg.data)
 }
 
+// string save_name = 3;
+inline void pull_respon_msg::clear_save_name() {
+  _impl_.save_name_.ClearToEmpty();
+}
+inline const std::string& pull_respon_msg::save_name() const {
+  // @@protoc_insertion_point(field_get:zftp_message.pull_respon_msg.save_name)
+  return _internal_save_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void pull_respon_msg::set_save_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.save_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.pull_respon_msg.save_name)
+}
+inline std::string* pull_respon_msg::mutable_save_name() {
+  std::string* _s = _internal_mutable_save_name();
+  // @@protoc_insertion_point(field_mutable:zftp_message.pull_respon_msg.save_name)
+  return _s;
+}
+inline const std::string& pull_respon_msg::_internal_save_name() const {
+  return _impl_.save_name_.Get();
+}
+inline void pull_respon_msg::_internal_set_save_name(const std::string& value) {
+  
+  _impl_.save_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* pull_respon_msg::_internal_mutable_save_name() {
+  
+  return _impl_.save_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* pull_respon_msg::release_save_name() {
+  // @@protoc_insertion_point(field_release:zftp_message.pull_respon_msg.save_name)
+  return _impl_.save_name_.Release();
+}
+inline void pull_respon_msg::set_allocated_save_name(std::string* save_name) {
+  if (save_name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.save_name_.SetAllocated(save_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.save_name_.IsDefault()) {
+    _impl_.save_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_respon_msg.save_name)
+}
+
 // -------------------------------------------------------------------
 
 // push_msg
@@ -2302,54 +2804,54 @@ inline void push_msg::set_allocated_data(std::string* data) {
   // @@protoc_insertion_point(field_set_allocated:zftp_message.push_msg.data)
 }
 
-// string name = 2;
-inline void push_msg::clear_name() {
-  _impl_.name_.ClearToEmpty();
+// string dst_name = 2;
+inline void push_msg::clear_dst_name() {
+  _impl_.dst_name_.ClearToEmpty();
 }
-inline const std::string& push_msg::name() const {
-  // @@protoc_insertion_point(field_get:zftp_message.push_msg.name)
-  return _internal_name();
+inline const std::string& push_msg::dst_name() const {
+  // @@protoc_insertion_point(field_get:zftp_message.push_msg.dst_name)
+  return _internal_dst_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void push_msg::set_name(ArgT0&& arg0, ArgT... args) {
+void push_msg::set_dst_name(ArgT0&& arg0, ArgT... args) {
  
- _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:zftp_message.push_msg.name)
+ _impl_.dst_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.push_msg.dst_name)
 }
-inline std::string* push_msg::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:zftp_message.push_msg.name)
+inline std::string* push_msg::mutable_dst_name() {
+  std::string* _s = _internal_mutable_dst_name();
+  // @@protoc_insertion_point(field_mutable:zftp_message.push_msg.dst_name)
   return _s;
 }
-inline const std::string& push_msg::_internal_name() const {
-  return _impl_.name_.Get();
+inline const std::string& push_msg::_internal_dst_name() const {
+  return _impl_.dst_name_.Get();
 }
-inline void push_msg::_internal_set_name(const std::string& value) {
+inline void push_msg::_internal_set_dst_name(const std::string& value) {
   
-  _impl_.name_.Set(value, GetArenaForAllocation());
+  _impl_.dst_name_.Set(value, GetArenaForAllocation());
 }
-inline std::string* push_msg::_internal_mutable_name() {
+inline std::string* push_msg::_internal_mutable_dst_name() {
   
-  return _impl_.name_.Mutable(GetArenaForAllocation());
+  return _impl_.dst_name_.Mutable(GetArenaForAllocation());
 }
-inline std::string* push_msg::release_name() {
-  // @@protoc_insertion_point(field_release:zftp_message.push_msg.name)
-  return _impl_.name_.Release();
+inline std::string* push_msg::release_dst_name() {
+  // @@protoc_insertion_point(field_release:zftp_message.push_msg.dst_name)
+  return _impl_.dst_name_.Release();
 }
-inline void push_msg::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
+inline void push_msg::set_allocated_dst_name(std::string* dst_name) {
+  if (dst_name != nullptr) {
     
   } else {
     
   }
-  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+  _impl_.dst_name_.SetAllocated(dst_name, GetArenaForAllocation());
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArenaForAllocation());
+  if (_impl_.dst_name_.IsDefault()) {
+    _impl_.dst_name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:zftp_message.push_msg.name)
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.push_msg.dst_name)
 }
 
 // bool force = 3;
@@ -2449,6 +2951,8 @@ inline void response_msg::set_allocated_error(std::string* error) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
