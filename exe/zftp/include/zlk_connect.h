@@ -31,7 +31,7 @@ protected:
     {
         if (ec)
         {
-            ERR("read_body failed = %s", ec.message().data());
+            ERR("read_body failed = %s what = %s  ret = %d", ec.message().data(), ec.what().data(), ec.value());
             close();
             return;
         }
@@ -113,18 +113,26 @@ public:
         memcpy(send_buffer_.c_array() + 4, msg, sz);
         // 4是包头
         m_sock->async_send(boost::asio::buffer(send_buffer_, sz + 4), boost::bind(&zlk_connect::send_message_callback,
-                                                                                  this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+                                                                                  this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 0, sz + 4));
         return 1;
     }
 
 private:
-    void send_message_callback(const boost::system::error_code &ec, std::size_t bytes_transferred)
+    void send_message_callback(const boost::system::error_code &ec, std::size_t bytes_transferred, int offset, int end)
     {
         if (ec)
         {
-            ERR("send_message failed err = %s", ec.message());
+            ERR("send_message failed err = %s what = %s", ec.message(), ec.what());
+            return;
         }
         DBG("send_message sz = %d", bytes_transferred);
+        // cao不直接算后面+全是坑
+        offset += bytes_transferred;
+        if (offset < end)
+        {
+            m_sock->async_send(boost::asio::buffer(send_buffer_.data() + offset, end - offset), boost::bind(&zlk_connect::send_message_callback,
+                                                                                                            this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
+        }
     }
 
 public:

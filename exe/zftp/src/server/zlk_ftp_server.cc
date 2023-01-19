@@ -39,7 +39,7 @@ void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &
 }
 int main(int argc, char *argv[])
 {
-    zlk_log::getInstance().init("log/server", 1, 1, zlk_logmode_debug);
+    zlk_log::getInstance().init("", 1, 1, zlk_logmode_debug);
 
     io_service_pool isp(2);
 

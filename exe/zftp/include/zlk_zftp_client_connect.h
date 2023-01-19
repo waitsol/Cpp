@@ -11,7 +11,7 @@ public:
 private:
     void _hand_message(char *p, int sz);
     void close() override{
-        shutdown();
+      //  shutdown();
     }
 
 };

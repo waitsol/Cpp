@@ -30,6 +30,7 @@ void Client::send_msg(const zftp_message::Pakcet &packet)
     string s;
     if (packet.SerializeToString(&s))
     {
+        DBG("send size = %d", s.size());
         m_connect->send_message(s.data(), s.size());
     }
     else
@@ -199,6 +200,9 @@ void cmd_ctrl()
                         push.set_src_name(v[1]);
                         delete[] pbuf;
                     }
+                    else
+                    {
+                    }
                     packet.set_msgbody(push.SerializeAsString());
                     g_client->send_msg(packet);
 
@@ -253,7 +257,10 @@ int main(int argc, char *argv[])
         cout << x.first << ":" << x.second;
     }
     zlk_log::getInstance()
-        .init(config["log"] + sep + "log", 1, 1);
+        .init("", 20480, 1);
+    /*
+       zlk_log::getInstance()
+    .init(config["log"] + sep + "log", 20480, 1);*/
     io_service_pool isp(2);
 
     g_client = new Client(isp);

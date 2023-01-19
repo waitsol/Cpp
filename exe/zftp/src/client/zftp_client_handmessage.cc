@@ -68,7 +68,7 @@ void zftp_client_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
             if (ofs.is_open())
             {
                 ofs.write(data.data(), data.length());
-                printf("pull success to %s\n", filename.data());
+                printf("pull ls to %s\n", filename.data());
                 ofs.close();
             }
             else
