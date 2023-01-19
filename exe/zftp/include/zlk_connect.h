@@ -9,6 +9,8 @@
 #include <boost/date_time.hpp>
 #include <boost/chrono.hpp>
 #include <boost/thread.hpp>
+#include <boost/thread/mutex.hpp>
+#include <queue>
 #include "zlk_log.h"
 #define _10MB 1024 * 1024 * 10
 class zlk_connect
@@ -109,11 +111,27 @@ public:
     //
     int send_message(const char *msg, int sz)
     {
-        int_to_array(sz, send_buffer_.c_array());
-        memcpy(send_buffer_.c_array() + 4, msg, sz);
-        // 4是包头
-        m_sock->async_send(boost::asio::buffer(send_buffer_, sz + 4), boost::bind(&zlk_connect::send_message_callback,
-                                                                                  this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 0, sz + 4));
+
+        boost::lock_guard<boost::mutex> _g(_mu);
+
+        if (_ing == nullptr)
+        {
+            _ing = new char[sz];
+            int_to_array(sz, _ing);
+            memcpy(_ing + 4, msg, sz);
+            // 4是包头
+            m_sock->async_send(boost::asio::buffer(_ing, sz + 4), boost::bind(&zlk_connect::send_message_callback,
+                                                                              this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 0, sz + 4));
+        }
+        else
+        {
+            socket_msg sm;
+            sm.data = new char[sz + 4];
+            int_to_array(sz, sm.data);
+            memcpy(sm.data + 4, msg, sz);
+            sm.sz = sz + 4;
+            _q_msg.push(sm);
+        }
         return 1;
     }
 
@@ -125,17 +143,33 @@ private:
             ERR("send_message failed err = %s what = %s", ec.message(), ec.what());
             return;
         }
-
+        if (offset == 0)
+        {
+            DBG("send first pack success bytes_transferred = %d,end=%d ", bytes_transferred, end);
+        }
         // cao不直接算后面+全是坑
         offset += bytes_transferred;
         if (offset < end)
         {
-            m_sock->async_send(boost::asio::buffer(send_buffer_.data() + offset, end - offset), boost::bind(&zlk_connect::send_message_callback,
-                                                                                                            this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
+            m_sock->async_send(boost::asio::buffer(_ing + offset, end - offset), boost::bind(&zlk_connect::send_message_callback,
+                                                                                             this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
         }
         else
         {
             DBG("send over sz = %d", offset);
+            boost::lock_guard<boost::mutex> _g(_mu);
+            delete[] _ing;
+            _ing = nullptr;
+            if (_q_msg.size())
+            {
+                socket_msg sm = _q_msg.front();
+                _q_msg.pop();
+                _ing = sm.data;
+                int sz = sm.sz;
+                // 4是包头
+                m_sock->async_send(boost::asio::buffer(_ing, sz), boost::bind(&zlk_connect::send_message_callback,
+                                                                              this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 0, sz));
+            }
         }
     }
 
@@ -163,10 +197,19 @@ protected:
     int _uid;
 
 private:
+    struct socket_msg
+    {
+        char *data;
+        int sz;
+    };
+
+private:
     boost::shared_ptr<boost::asio::ip::tcp::socket> m_sock;
     boost::array<char, _10MB> buffer_;
-    boost::array<char, _10MB> send_buffer_;
     boost::array<char, 4> header_buffer_;
+    boost::mutex _mu;
+    std::queue<socket_msg> _q_msg;
+    char *_ing;
     int _offset;
     int _end;
 };
