@@ -178,6 +178,7 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
     if (msg.ParseFromString(packet.msgbody()))
     {
         string cmd = shell_cmd(msg.name(), packet.id());
+        bool buse = false;
         if (access(cmd.data(), F_OK) != 0)
         {
             UserInfo *pu = g_server->get_userinfo(packet.id());
@@ -190,6 +191,7 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
             }
             else
             {
+                buse = true;
                 cmd = iter->second;
             }
         }
@@ -209,15 +211,24 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
                     ifs.read(pbuf, fos);
                     res.set_data(pbuf, fos);
                     res.set_ok(true);
-                    int idx = cmd.find_last_of('/');
-                    if (idx != -1)
+
+                    if (!buse)
                     {
-                        res.set_save_name(cmd.substr(idx + 1));
+                        res.set_save_name(msg.dstname());
                     }
                     else
                     {
-                        res.set_save_name(cmd);
+                        int idx = cmd.find_last_of('/');
+                        if (idx != -1)
+                        {
+                            res.set_save_name(cmd.substr(idx + 1));
+                        }
+                        else
+                        {
+                            res.set_save_name(cmd);
+                        }
                     }
+
                     delete[] pbuf;
                 }
                 else
@@ -353,13 +364,13 @@ void zftp_server_handleMessage::hand_cd(const zftp_message::Pakcet &packet, zftp
 }
 void zftp_server_handleMessage::hand_mkdir(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)
 {
-    zftp_message::pull_msg msg;
-    zftp_message::pull_respon_msg res;
+    zftp_message::mkdir_msg msg;
+    zftp_message::response_msg res;
     res.set_ok(false);
 
     if (msg.ParseFromString(packet.msgbody()))
     {
-        string cmd = shell_cmd(msg.name(), packet.id());
+        string cmd = shell_cmd(msg.data(), packet.id());
         string shell = "mkdir " + cmd;
         if (system(shell.data()) == 0)
         {
@@ -367,13 +378,13 @@ void zftp_server_handleMessage::hand_mkdir(const zftp_message::Pakcet &packet, z
         }
         else
         {
-            res.set_data(strerror(errno));
+            res.set_error(strerror(errno));
         }
     }
     else
     {
         ERR("ParseFromString error");
-        res.set_data("ParseFromString error");
+        res.set_error("ParseFromString error");
     }
     zlk_res.set_msgbody(res.SerializeAsString());
 }

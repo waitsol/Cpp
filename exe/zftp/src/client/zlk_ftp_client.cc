@@ -138,7 +138,7 @@ void cmd_ctrl()
                     }
                     else
                     {
-                        pull.set_dstname(v[1]);
+                        pull.set_dstname(v[2]);
                     }
                 }
 
@@ -256,11 +256,11 @@ int main(int argc, char *argv[])
     {
         cout << x.first << ":" << x.second;
     }
-    // zlk_log::getInstance()
-    //     .init("", 20480, 1);
-
     zlk_log::getInstance()
-        .init(config["log"] + sep + "log", 20480, 1);
+        .init("", 20480, 1);
+
+    // zlk_log::getInstance()
+    //     .init(config["log"] + sep + "log", 20480, 1);
     io_service_pool isp(2);
 
     g_client = new Client(isp);

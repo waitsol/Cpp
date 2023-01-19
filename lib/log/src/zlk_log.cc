@@ -237,6 +237,7 @@ void zlk_log::sync2file(zlk_buffer *pbuf)
             test_time = GetTickCount64();
         }
         unlock(m_logMutex);
+        m_file.flush();
     }
 }
 void zlk_log::open()
