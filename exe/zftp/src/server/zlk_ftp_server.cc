@@ -37,16 +37,24 @@ void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &
         ERR("not find msg id = %d", packet.msgid());
     }
 }
-int main()
+int main(int argc, char *argv[])
 {
-    zlk_log::getInstance().init("", 1, 1, zlk_logmode_debug);
+    zlk_log::getInstance().init("log/server", 1, 1, zlk_logmode_debug);
 
     io_service_pool isp(2);
 
     g_server = new Server(isp);
     g_server->regist();
     zlk_boost_socket s(isp);
-    s.bind();
+    if (argc == 2)
+    {
+        s.bind(atoi(argv[1]));
+    }
+    else
+    {
+        s.bind();
+    }
+
     s.accept();
     isp.run();
     return 0;

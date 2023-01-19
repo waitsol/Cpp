@@ -61,3 +61,7 @@ void zlk_zftp_server_connect::hand_message(char *p, int sz)
 {
     g_server->get_io_service_pool().get_io_service().post(std::bind(&zlk_zftp_server_connect::_hand_message, this, p, sz));
 }
+void zlk_zftp_server_connect::close()
+{
+    g_server->logout(_uid);
+}

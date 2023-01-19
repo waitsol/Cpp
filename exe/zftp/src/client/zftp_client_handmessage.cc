@@ -63,6 +63,7 @@ void zftp_client_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
         {
             auto data = res.data();
             auto filename = res.save_name();
+
             ofstream ofs(filename, ios::binary);
             if (ofs.is_open())
             {
@@ -72,7 +73,7 @@ void zftp_client_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
             }
             else
             {
-                printf("save failed\n");
+                printf("save failed %s\n", filename.data());
             }
         }
         else

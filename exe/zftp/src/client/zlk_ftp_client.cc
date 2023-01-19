@@ -114,7 +114,7 @@ void cmd_ctrl()
         }
         else if (type == "pull")
         {
-            if (n > 3)
+            if (n > 3 || n == 1)
             {
                 printf("argv error\n");
             }
@@ -167,7 +167,7 @@ void cmd_ctrl()
         }
         else if (type == "push")
         {
-            if (n > 3)
+            if (n > 3 || n == 1)
             {
                 printf("argv error\n");
             }
@@ -239,15 +239,27 @@ void cmd_ctrl()
         }
     }
 }
-int main()
+int main(int argc, char *argv[])
 {
-    zlk_log::getInstance().init("", 1, 1);
+    std::unordered_map<string, string> config;
+    printf("%s\n", argv[1]);
+    std::string dir = argc == 1 ? "." + sep : argv[1];
+    string path = dir + sep + "config.lua";
+    printf("%s\n", path.data());
+
+    table_traverse(path, config);
+    for (auto x : config)
+    {
+        cout << x.first << ":" << x.second;
+    }
+    zlk_log::getInstance()
+        .init(config["log"] + sep + "log", 1, 1);
     io_service_pool isp(2);
 
     g_client = new Client(isp);
     g_client->regist();
     zlk_boost_socket s(isp);
-    s.connect();
+    s.connect(config["ip"], atoi(config["port"].data()));
     isp.run(false);
     cmd_ctrl();
     printf("%s\n", strerror(errno));

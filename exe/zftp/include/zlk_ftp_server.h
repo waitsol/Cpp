@@ -32,8 +32,13 @@ public:
     void regist();
     void logout(int id)
     {
-        m_connectInfo.erase(id);
-        _mapUserInfo.erase(id);
+        auto iter = m_connectInfo.find(id);
+        if (iter != m_connectInfo.end())
+        {
+            iter->second->shutdown();
+            m_connectInfo.erase(iter);
+            _mapUserInfo.erase(id);
+        }
     }
     UserInfo *get_userinfo(int id)
     {

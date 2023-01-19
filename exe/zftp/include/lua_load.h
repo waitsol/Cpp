@@ -13,11 +13,12 @@ extern "C"
 #include "zlk_lua.h"
 
 /* 遍历一维表 */
-static void table_traverse(string fileName, unordered_map<string, string> m)
+static void table_traverse(string fileName, unordered_map<string, string> &m)
 {
     lua_State *L = luaL_newstate();
     luaL_openlibs(L);
-    luaL_loadfile(L, fileName.data());
+    luaL_dofile(L, fileName.data());
+    zlk_lua_top_type(L);
     lua_pushnil(L); /* table 里第一对 key-value 的前面没有数据，所以先用 lua_pushnil() 压入一个 nil 充当初始 key */
 
     while (lua_next(L, -2))

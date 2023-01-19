@@ -32,12 +32,14 @@ protected:
         if (ec)
         {
             ERR("read_body failed = %s", ec.message().data());
+            close();
             return;
         }
         /*；连接断开bytes_transferred=0*/
         if (bytes_transferred == 0)
         {
             DBG("socket disconnect");
+            close();
             return;
         }
         if (bytes_transferred != 4)
@@ -59,13 +61,16 @@ protected:
 
         if (ec)
         {
+
             ERR("handle_body failed = %s", ec.message().data());
+            close();
             return;
         }
         /*；连接断开bytes_transferred=0*/
         if (bytes_transferred == 0)
         {
             ERR("socket disconnect");
+            close();
             return;
         }
         _offset += bytes_transferred;
@@ -124,6 +129,13 @@ private:
 
 public:
     virtual void hand_message(char *msg, int sz) = 0;
+    void shutdown()
+    {
+        m_sock->close();
+    }
+
+protected:
+    virtual void close() = 0;
 
 private:
     void int_to_array(int sz, char *p)

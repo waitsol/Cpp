@@ -30,7 +30,6 @@ string shell_cmd(string cmd, int id)
     {
         q.push_back(x);
     }
-
     for (auto &s : v)
     {
         if (s == ".")
@@ -100,7 +99,7 @@ void zftp_server_handleMessage::hand_ls(const zftp_message::Pakcet &packet, zftp
 
                     node->set_id(i + 1);
                     node->set_name(res[i]);
-                    pu->_mapFileInfo[i + 1] = res[i];
+                    pu->_mapFileInfo[i + 1] = cmd + "/" + res[i];
                     DBG("res = %s", res[i].data());
                 }
 
@@ -138,7 +137,7 @@ void zftp_server_handleMessage::hand_rm(const zftp_message::Pakcet &packet, zftp
         {
             UserInfo *pu = g_server->get_userinfo(packet.id());
 
-            auto iter = pu->_mapFileInfo.find(atoi(cmd.data()));
+            auto iter = pu->_mapFileInfo.find(atoi(msg.file_name().data()));
             if (iter == pu->_mapFileInfo.end())
             {
                 res.set_ok(false);
@@ -182,7 +181,7 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
         if (access(cmd.data(), F_OK) != 0)
         {
             UserInfo *pu = g_server->get_userinfo(packet.id());
-            auto iter = pu->_mapFileInfo.find(atoi(cmd.data()));
+            auto iter = pu->_mapFileInfo.find(atoi(msg.name().data()));
             if (iter == pu->_mapFileInfo.end())
             {
                 res.set_data("file don't exit");
@@ -194,29 +193,40 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
                 cmd = iter->second;
             }
         }
-
-        ifstream ifs(cmd, ios::binary);
-        if (ifs.is_open())
+        struct stat st;
+        if (stat(cmd.data(), &st) == 0 && (st.st_mode & S_IFREG))
         {
-            ifs.seekg(0, ifs.end);
-            auto fos = ifs.tellg();
-            ifs.seekg(0, ifs.beg);
-            char *pbuf = new char[fos];
-            DBG("file sz = %d", fos);
-            if (pbuf != nullptr)
+            ifstream ifs(cmd, ios::binary);
+            if (ifs.is_open())
             {
-                ifs.read(pbuf, fos);
-                res.set_data(pbuf, fos);
-                res.set_ok(true);
-                res.set_save_name(cmd);
-                delete[] pbuf;
-            }
-            else
-            {
-                res.set_data("malloc failed");
-            }
+                ifs.seekg(0, ifs.end);
+                auto fos = ifs.tellg();
+                ifs.seekg(0, ifs.beg);
+                char *pbuf = new char[fos];
+                DBG("file sz = %d", fos);
+                if (pbuf != nullptr)
+                {
+                    ifs.read(pbuf, fos);
+                    res.set_data(pbuf, fos);
+                    res.set_ok(true);
+                    int idx = cmd.find_last_of('/');
+                    if (idx != -1)
+                    {
+                        res.set_save_name(cmd.substr(idx + 1));
+                    }
+                    else
+                    {
+                        res.set_save_name(cmd);
+                    }
+                    delete[] pbuf;
+                }
+                else
+                {
+                    res.set_data("malloc failed");
+                }
 
-            ifs.close();
+                ifs.close();
+            }
         }
         else
         {
@@ -283,11 +293,13 @@ void zftp_server_handleMessage::hand_cd(const zftp_message::Pakcet &packet, zftp
     {
         string cmd = shell_cmd(msg.dir(), packet.id());
         struct stat st;
+
+        DBG("cmd = %s", cmd.data());
         if (access(cmd.data(), F_OK) != 0)
         {
             UserInfo *pu = g_server->get_userinfo(packet.id());
 
-            auto iter = pu->_mapFileInfo.find(atoi(cmd.data()));
+            auto iter = pu->_mapFileInfo.find(atoi(msg.dir().data()));
             if (iter == pu->_mapFileInfo.end())
             {
                 res.set_ok(false);
@@ -312,10 +324,15 @@ void zftp_server_handleMessage::hand_cd(const zftp_message::Pakcet &packet, zftp
 
                 if (msg.dir().size() != 0)
                 {
-                    vector<string> v = sp(cmd);
+                    vector<string> v = sp(cmd, '/');
+
                     for (auto x : v)
                         pu->_list.push_back(x);
+
+                    DBG(cmd.data());
+                    DBG("sz = %d", pu->_list.size());
                 }
+                pu->_mapFileInfo.clear();
             }
             else
             {
