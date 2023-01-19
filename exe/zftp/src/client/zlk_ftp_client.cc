@@ -24,19 +24,23 @@ void Client::regist(zlk_messagehandle *pz)
         m_mapFunc[x.first] = x.second;
     }
 }
-void Client::send_msg(const zftp_message::Pakcet &packet)
+void Client::_send_message(const zftp_message::Pakcet packet)
 {
-
     string s;
     if (packet.SerializeToString(&s))
     {
         DBG("send size = %d", s.size());
+        printf("send_msg size = %d\n", s.size());
         m_connect->send_message(s.data(), s.size());
     }
     else
     {
         ERR("send_msg error");
     }
+}
+void Client::send_msg(const zftp_message::Pakcet &packet)
+{
+    m_io_service_pool.get_acceptor_io_service().post(std::bind(&Client::_send_message, this, packet));
 }
 void Client::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &packetResponse)
 {

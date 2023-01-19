@@ -23,7 +23,7 @@ public:
     {
         return m_io_service_pool;
     }
-
+    void _send_message(const zftp_message::Pakcet packet);
 private:
     void regist(zlk_messagehandle *);
 

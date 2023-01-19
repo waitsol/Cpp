@@ -74,10 +74,9 @@ protected:
             return;
         }
         _offset += bytes_transferred;
-        DBG("bytes_transferred = %d _offset = %d", bytes_transferred, _offset);
-
         if (_offset >= _end)
         {
+            DBG("Read over sz = %d", _offset);
             char *msg = new char[_end];
             memcpy(msg, buffer_.data(), _end);
 
@@ -95,6 +94,7 @@ protected:
             }
             else
             {
+
                 read_header();
             }
         }
@@ -125,13 +125,17 @@ private:
             ERR("send_message failed err = %s what = %s", ec.message(), ec.what());
             return;
         }
-        DBG("send_message sz = %d", bytes_transferred);
+
         // cao不直接算后面+全是坑
         offset += bytes_transferred;
         if (offset < end)
         {
             m_sock->async_send(boost::asio::buffer(send_buffer_.data() + offset, end - offset), boost::bind(&zlk_connect::send_message_callback,
                                                                                                             this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
+        }
+        else
+        {
+            DBG("send over sz = %d", offset);
         }
     }
 
