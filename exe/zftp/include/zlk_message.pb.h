@@ -51,6 +51,9 @@ extern PakcetDefaultTypeInternal _Pakcet_default_instance_;
 class cd_msg;
 struct cd_msgDefaultTypeInternal;
 extern cd_msgDefaultTypeInternal _cd_msg_default_instance_;
+class login_msg;
+struct login_msgDefaultTypeInternal;
+extern login_msgDefaultTypeInternal _login_msg_default_instance_;
 class ls_msg;
 struct ls_msgDefaultTypeInternal;
 extern ls_msgDefaultTypeInternal _ls_msg_default_instance_;
@@ -82,6 +85,7 @@ extern rm_msgDefaultTypeInternal _rm_msg_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::zftp_message::Pakcet* Arena::CreateMaybeMessage<::zftp_message::Pakcet>(Arena*);
 template<> ::zftp_message::cd_msg* Arena::CreateMaybeMessage<::zftp_message::cd_msg>(Arena*);
+template<> ::zftp_message::login_msg* Arena::CreateMaybeMessage<::zftp_message::login_msg>(Arena*);
 template<> ::zftp_message::ls_msg* Arena::CreateMaybeMessage<::zftp_message::ls_msg>(Arena*);
 template<> ::zftp_message::ls_response* Arena::CreateMaybeMessage<::zftp_message::ls_response>(Arena*);
 template<> ::zftp_message::ls_response_node* Arena::CreateMaybeMessage<::zftp_message::ls_response_node>(Arena*);
@@ -271,6 +275,175 @@ class Pakcet final :
 };
 // -------------------------------------------------------------------
 
+class login_msg final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:zftp_message.login_msg) */ {
+ public:
+  inline login_msg() : login_msg(nullptr) {}
+  ~login_msg() override;
+  explicit PROTOBUF_CONSTEXPR login_msg(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  login_msg(const login_msg& from);
+  login_msg(login_msg&& from) noexcept
+    : login_msg() {
+    *this = ::std::move(from);
+  }
+
+  inline login_msg& operator=(const login_msg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline login_msg& operator=(login_msg&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const login_msg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const login_msg* internal_default_instance() {
+    return reinterpret_cast<const login_msg*>(
+               &_login_msg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(login_msg& a, login_msg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(login_msg* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(login_msg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  login_msg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<login_msg>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const login_msg& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const login_msg& from) {
+    login_msg::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(login_msg* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "zftp_message.login_msg";
+  }
+  protected:
+  explicit login_msg(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserFieldNumber = 1,
+    kPasswdFieldNumber = 2,
+  };
+  // string user = 1;
+  void clear_user();
+  const std::string& user() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user();
+  PROTOBUF_NODISCARD std::string* release_user();
+  void set_allocated_user(std::string* user);
+  private:
+  const std::string& _internal_user() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user(const std::string& value);
+  std::string* _internal_mutable_user();
+  public:
+
+  // string passwd = 2;
+  void clear_passwd();
+  const std::string& passwd() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_passwd(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_passwd();
+  PROTOBUF_NODISCARD std::string* release_passwd();
+  void set_allocated_passwd(std::string* passwd);
+  private:
+  const std::string& _internal_passwd() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_passwd(const std::string& value);
+  std::string* _internal_mutable_passwd();
+  public:
+
+  // @@protoc_insertion_point(class_scope:zftp_message.login_msg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr passwd_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_zlk_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
 class mkdir_msg final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:zftp_message.mkdir_msg) */ {
  public:
@@ -319,7 +492,7 @@ class mkdir_msg final :
                &_mkdir_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(mkdir_msg& a, mkdir_msg& b) {
     a.Swap(&b);
@@ -472,7 +645,7 @@ class cd_msg final :
                &_cd_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(cd_msg& a, cd_msg& b) {
     a.Swap(&b);
@@ -625,7 +798,7 @@ class ls_msg final :
                &_ls_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(ls_msg& a, ls_msg& b) {
     a.Swap(&b);
@@ -778,7 +951,7 @@ class ls_response_node final :
                &_ls_response_node_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(ls_response_node& a, ls_response_node& b) {
     a.Swap(&b);
@@ -851,11 +1024,12 @@ class ls_response_node final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 3,
+    kNameFieldNumber = 4,
     kIdFieldNumber = 1,
     kTypeFieldNumber = 2,
+    kSizeFieldNumber = 3,
   };
-  // string name = 3;
+  // string name = 4;
   void clear_name();
   const std::string& name() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
@@ -887,6 +1061,15 @@ class ls_response_node final :
   void _internal_set_type(int32_t value);
   public:
 
+  // int32 size = 3;
+  void clear_size();
+  int32_t size() const;
+  void set_size(int32_t value);
+  private:
+  int32_t _internal_size() const;
+  void _internal_set_size(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.ls_response.node)
  private:
   class _Internal;
@@ -898,6 +1081,7 @@ class ls_response_node final :
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     int32_t id_;
     int32_t type_;
+    int32_t size_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -953,7 +1137,7 @@ class ls_response final :
                &_ls_response_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(ls_response& a, ls_response& b) {
     a.Swap(&b);
@@ -1139,7 +1323,7 @@ class rm_msg final :
                &_rm_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(rm_msg& a, rm_msg& b) {
     a.Swap(&b);
@@ -1314,7 +1498,7 @@ class pull_msg final :
                &_pull_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(pull_msg& a, pull_msg& b) {
     a.Swap(&b);
@@ -1483,7 +1667,7 @@ class pull_respon_msg final :
                &_pull_respon_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(pull_respon_msg& a, pull_respon_msg& b) {
     a.Swap(&b);
@@ -1663,7 +1847,7 @@ class push_msg final :
                &_push_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(push_msg& a, push_msg& b) {
     a.Swap(&b);
@@ -1738,6 +1922,7 @@ class push_msg final :
   enum : int {
     kDataFieldNumber = 1,
     kDstNameFieldNumber = 2,
+    kSrcNameFieldNumber = 4,
     kForceFieldNumber = 3,
   };
   // bytes data = 1;
@@ -1768,6 +1953,20 @@ class push_msg final :
   std::string* _internal_mutable_dst_name();
   public:
 
+  // string src_name = 4;
+  void clear_src_name();
+  const std::string& src_name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_src_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_src_name();
+  PROTOBUF_NODISCARD std::string* release_src_name();
+  void set_allocated_src_name(std::string* src_name);
+  private:
+  const std::string& _internal_src_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src_name(const std::string& value);
+  std::string* _internal_mutable_src_name();
+  public:
+
   // bool force = 3;
   void clear_force();
   bool force() const;
@@ -1787,6 +1986,7 @@ class push_msg final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dst_name_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr src_name_;
     bool force_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1843,7 +2043,7 @@ class response_msg final :
                &_response_msg_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(response_msg& a, response_msg& b) {
     a.Swap(&b);
@@ -2060,6 +2260,110 @@ inline void Pakcet::set_allocated_msgbody(std::string* msgbody) {
 
 // -------------------------------------------------------------------
 
+// login_msg
+
+// string user = 1;
+inline void login_msg::clear_user() {
+  _impl_.user_.ClearToEmpty();
+}
+inline const std::string& login_msg::user() const {
+  // @@protoc_insertion_point(field_get:zftp_message.login_msg.user)
+  return _internal_user();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void login_msg::set_user(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.user_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.login_msg.user)
+}
+inline std::string* login_msg::mutable_user() {
+  std::string* _s = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:zftp_message.login_msg.user)
+  return _s;
+}
+inline const std::string& login_msg::_internal_user() const {
+  return _impl_.user_.Get();
+}
+inline void login_msg::_internal_set_user(const std::string& value) {
+  
+  _impl_.user_.Set(value, GetArenaForAllocation());
+}
+inline std::string* login_msg::_internal_mutable_user() {
+  
+  return _impl_.user_.Mutable(GetArenaForAllocation());
+}
+inline std::string* login_msg::release_user() {
+  // @@protoc_insertion_point(field_release:zftp_message.login_msg.user)
+  return _impl_.user_.Release();
+}
+inline void login_msg::set_allocated_user(std::string* user) {
+  if (user != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.user_.SetAllocated(user, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.user_.IsDefault()) {
+    _impl_.user_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.login_msg.user)
+}
+
+// string passwd = 2;
+inline void login_msg::clear_passwd() {
+  _impl_.passwd_.ClearToEmpty();
+}
+inline const std::string& login_msg::passwd() const {
+  // @@protoc_insertion_point(field_get:zftp_message.login_msg.passwd)
+  return _internal_passwd();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void login_msg::set_passwd(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.passwd_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.login_msg.passwd)
+}
+inline std::string* login_msg::mutable_passwd() {
+  std::string* _s = _internal_mutable_passwd();
+  // @@protoc_insertion_point(field_mutable:zftp_message.login_msg.passwd)
+  return _s;
+}
+inline const std::string& login_msg::_internal_passwd() const {
+  return _impl_.passwd_.Get();
+}
+inline void login_msg::_internal_set_passwd(const std::string& value) {
+  
+  _impl_.passwd_.Set(value, GetArenaForAllocation());
+}
+inline std::string* login_msg::_internal_mutable_passwd() {
+  
+  return _impl_.passwd_.Mutable(GetArenaForAllocation());
+}
+inline std::string* login_msg::release_passwd() {
+  // @@protoc_insertion_point(field_release:zftp_message.login_msg.passwd)
+  return _impl_.passwd_.Release();
+}
+inline void login_msg::set_allocated_passwd(std::string* passwd) {
+  if (passwd != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.passwd_.SetAllocated(passwd, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.passwd_.IsDefault()) {
+    _impl_.passwd_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.login_msg.passwd)
+}
+
+// -------------------------------------------------------------------
+
 // mkdir_msg
 
 // string data = 1;
@@ -2264,7 +2568,27 @@ inline void ls_response_node::set_type(int32_t value) {
   // @@protoc_insertion_point(field_set:zftp_message.ls_response.node.type)
 }
 
-// string name = 3;
+// int32 size = 3;
+inline void ls_response_node::clear_size() {
+  _impl_.size_ = 0;
+}
+inline int32_t ls_response_node::_internal_size() const {
+  return _impl_.size_;
+}
+inline int32_t ls_response_node::size() const {
+  // @@protoc_insertion_point(field_get:zftp_message.ls_response.node.size)
+  return _internal_size();
+}
+inline void ls_response_node::_internal_set_size(int32_t value) {
+  
+  _impl_.size_ = value;
+}
+inline void ls_response_node::set_size(int32_t value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:zftp_message.ls_response.node.size)
+}
+
+// string name = 4;
 inline void ls_response_node::clear_name() {
   _impl_.name_.ClearToEmpty();
 }
@@ -2874,6 +3198,56 @@ inline void push_msg::set_force(bool value) {
   // @@protoc_insertion_point(field_set:zftp_message.push_msg.force)
 }
 
+// string src_name = 4;
+inline void push_msg::clear_src_name() {
+  _impl_.src_name_.ClearToEmpty();
+}
+inline const std::string& push_msg::src_name() const {
+  // @@protoc_insertion_point(field_get:zftp_message.push_msg.src_name)
+  return _internal_src_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void push_msg::set_src_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.src_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.push_msg.src_name)
+}
+inline std::string* push_msg::mutable_src_name() {
+  std::string* _s = _internal_mutable_src_name();
+  // @@protoc_insertion_point(field_mutable:zftp_message.push_msg.src_name)
+  return _s;
+}
+inline const std::string& push_msg::_internal_src_name() const {
+  return _impl_.src_name_.Get();
+}
+inline void push_msg::_internal_set_src_name(const std::string& value) {
+  
+  _impl_.src_name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* push_msg::_internal_mutable_src_name() {
+  
+  return _impl_.src_name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* push_msg::release_src_name() {
+  // @@protoc_insertion_point(field_release:zftp_message.push_msg.src_name)
+  return _impl_.src_name_.Release();
+}
+inline void push_msg::set_allocated_src_name(std::string* src_name) {
+  if (src_name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.src_name_.SetAllocated(src_name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.src_name_.IsDefault()) {
+    _impl_.src_name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.push_msg.src_name)
+}
+
 // -------------------------------------------------------------------
 
 // response_msg
@@ -2951,6 +3325,8 @@ inline void response_msg::set_allocated_error(std::string* error) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

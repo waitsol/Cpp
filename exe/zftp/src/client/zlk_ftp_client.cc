@@ -5,7 +5,11 @@
 #include "zlk_message.pb.h"
 #include "zftp_client_handmessage.h"
 #include "zlk_string.h"
-
+#ifdef WIN32
+#define sep '\\'
+#else
+#define sep '/'
+#endif
 Client *g_client;
 void Client::regist()
 {
@@ -120,7 +124,23 @@ void cmd_ctrl()
                 zftp_message::pull_msg pull;
                 pull.set_name(v[1]);
                 packet.set_msgid(int(zlkMsg::pull));
-                pull.set_dstname(n == 3 ? v[2] : v[1]);
+                if (n == 2)
+                {
+                    pull.set_dstname(v[1]);
+                }
+                else
+                {
+                    struct stat st;
+                    if (stat(v[2].data(), &st) == 0 && (st.st_mode & S_IFDIR))
+                    {
+                        pull.set_dstname(v[2] + sep + v[1]);
+                    }
+                    else
+                    {
+                        pull.set_dstname(v[1]);
+                    }
+                }
+
                 packet.set_msgbody(pull.SerializeAsString());
                 g_client->send_msg(packet);
             }
@@ -176,7 +196,7 @@ void cmd_ctrl()
                         ifs.read(pbuf, fos);
                         push.set_data(pbuf, fos);
                         push.set_dst_name(n == 3 ? v[2] : v[1]);
-
+                        push.set_src_name(v[1]);
                         delete[] pbuf;
                     }
                     packet.set_msgbody(push.SerializeAsString());
@@ -195,6 +215,22 @@ void cmd_ctrl()
             mk.set_data(v[1]);
             packet.set_msgid(int(zlkMsg::mkdir));
             packet.set_msgbody(mk.SerializeAsString());
+            g_client->send_msg(packet);
+        }
+        else if (type == "login")
+        {
+            if (n != 3)
+            {
+                printf("need user and passwd\n");
+                continue;
+            }
+            zftp_message::Pakcet packet;
+            packet.set_msgid(int(zlkMsg::login));
+            zftp_message::login_msg msg;
+            msg.set_user(v[1]);
+            msg.set_passwd(v[2]);
+            packet.set_msgbody(msg.SerializeAsString());
+
             g_client->send_msg(packet);
         }
         else

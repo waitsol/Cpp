@@ -1,6 +1,8 @@
 #include "zlk_zftp_server_connect.h"
 #include "zlk_ftp_server.h"
 extern Server *g_server;
+#define Usr "root"
+#define Passwd "aa"
 void zlk_zftp_server_connect::_hand_message(char *p, int sz)
 {
 
@@ -13,17 +15,46 @@ void zlk_zftp_server_connect::_hand_message(char *p, int sz)
         ERR("ParseFromArray error sz = %d", sz);
         return;
     }
-    packet.set_id(_uid);
-    g_server->handle_message(packet, response);
-    if (response.msgbody().size())
+    if (is_login())
     {
-        auto res = response.SerializeAsString();
-        send_message(res.data(), res.size());
-        DBG("respon sz = %d", res.length());
+        packet.set_id(_uid);
+        g_server->handle_message(packet, response);
+        if (response.msgbody().size())
+        {
+            auto res = response.SerializeAsString();
+            send_message(res.data(), res.size());
+            DBG("respon sz = %d", res.length());
+        }
+        else
+        {
+            DBG("response.msgbody().size() = %d", response.msgbody().size());
+        }
     }
     else
     {
-        DBG("response.msgbody().size() = %d", response.msgbody().size());
+        zftp_message::login_msg msg;
+        zftp_message::response_msg res;
+        if (msg.ParseFromString(packet.msgbody()))
+        {
+            if (msg.user() == Usr && msg.passwd() == Passwd)
+            {
+                res.set_ok(true);
+                set_login();
+            }
+            else
+            {
+                res.set_error("login failed");
+            }
+        }
+        else
+        {
+            res.set_error("user not login");
+        }
+        response.set_msgid(int(zlkMsg::login));
+        response.set_msgbody(res.SerializeAsString());
+        auto s = response.SerializeAsString();
+
+        send_message(s.data(), s.size());
     }
 }
 void zlk_zftp_server_connect::hand_message(char *p, int sz)

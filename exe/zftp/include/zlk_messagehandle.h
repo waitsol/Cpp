@@ -12,6 +12,7 @@ enum class zlkMsg
     cd,
     mkdir,
     pwd,
+    login,
 };
 using zlk_msg_func = std::function<void(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)>;
 

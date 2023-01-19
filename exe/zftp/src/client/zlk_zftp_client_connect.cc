@@ -13,11 +13,34 @@ void zlk_zftp_client_connect::_hand_message(char *p, int sz)
         ERR("ParseFromArray error sz = %d", sz);
         return;
     }
-    g_client->handle_message(packet, response);
-    if (response.msgbody().size())
+    if (packet.msgid() != int(zlkMsg::login))
     {
-        auto res = response.SerializeAsString();
-        send_message(res.data(), res.length());
+        g_client->handle_message(packet, response);
+        if (response.msgbody().size())
+        {
+            auto res = response.SerializeAsString();
+            send_message(res.data(), res.length());
+        }
+    }
+    else
+    {
+        zftp_message::response_msg res;
+
+        if (res.ParseFromString(packet.msgbody()))
+        {
+            if (res.ok())
+            {
+                printf("login success\n");
+            }
+            else
+            {
+                printf("%s\n", res.error().data());
+            }
+        }
+        else
+        {
+            printf("login stats error\n");
+        }
     }
 }
 void zlk_zftp_client_connect::hand_message(char *p, int sz)

@@ -22,7 +22,7 @@ void zftp_client_handleMessage::hand_ls(const zftp_message::Pakcet &packet, zftp
 
             for (int i = 0; i < res.list_size(); i++)
             {
-                printf("id = %03d  is_dir = %d filename = %s  \n", res.list(i).id(), res.list(i).type(), res.list(i).name().data());
+                printf("id = %-3d size = %-12d  is_dir = %d  filename = %s  \n", res.list(i).id(), res.list(i).size(), res.list(i).type(), res.list(i).name().data());
             }
         }
         else

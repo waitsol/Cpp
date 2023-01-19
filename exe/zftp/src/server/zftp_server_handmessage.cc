@@ -95,6 +95,7 @@ void zftp_server_handleMessage::hand_ls(const zftp_message::Pakcet &packet, zftp
                     if (stat((cmd + "/" + res[i]).data(), &st) == 0)
                     {
                         node->set_type((st.st_mode & S_IFDIR) != 0);
+                        node->set_size(st.st_size);
                     }
 
                     node->set_id(i + 1);
@@ -207,7 +208,7 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
                 ifs.read(pbuf, fos);
                 res.set_data(pbuf, fos);
                 res.set_ok(true);
-                res.set_save_name(msg.dstname());
+                res.set_save_name(cmd);
                 delete[] pbuf;
             }
             else
@@ -238,6 +239,12 @@ void zftp_server_handleMessage::hand_push(const zftp_message::Pakcet &packet, zf
     {
         // 防止越权
         string cmd = shell_cmd(msg.dst_name(), packet.id());
+        struct stat st;
+        if (stat(cmd.data(), &st) == 0 && (st.st_mode & S_IFDIR))
+        {
+            cmd += '/' + msg.src_name();
+        }
+
         if (!msg.force())
         {
             if (access(cmd.data(), F_OK) == 0)
@@ -356,7 +363,6 @@ void zftp_server_handleMessage::hand_mkdir(const zftp_message::Pakcet &packet, z
 
 void zftp_server_handleMessage::hand_pwd(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)
 {
-    zftp_message::pull_msg msg;
     zftp_message::response_msg res;
     res.set_ok(true);
     res.set_error(shell_cmd("", packet.id()));
