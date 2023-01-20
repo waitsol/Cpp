@@ -64,6 +64,16 @@ void zftp_client_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
             auto data = res.data();
             auto filename = res.save_name();
 
+            int idx = filename.find_last_of('/');
+            if (idx != -1)
+            {
+                string dir = filename.substr(0, idx);
+                if (access(dir.data(), F_OK) != 0)
+                {
+                    string shell = "mkdir -p " + dir;
+                    system(shell.data());
+                }
+            }
             ofstream ofs(filename, ios::binary);
             if (ofs.is_open())
             {

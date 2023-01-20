@@ -38,6 +38,7 @@ message rm_msg{
 message pull_msg{
     string name=1;
     string dstName=2;
+    string src_dir=3;
 }
 message pull_respon_msg{
     bool  ok=1;
@@ -49,6 +50,7 @@ message push_msg{
     string dst_name=2;
     bool   force=3;
     string src_name=4;
+  
 
 }
 message response_msg{

@@ -1573,6 +1573,7 @@ class pull_msg final :
   enum : int {
     kNameFieldNumber = 1,
     kDstNameFieldNumber = 2,
+    kSrcDirFieldNumber = 3,
   };
   // string name = 1;
   void clear_name();
@@ -1602,6 +1603,20 @@ class pull_msg final :
   std::string* _internal_mutable_dstname();
   public:
 
+  // string src_dir = 3;
+  void clear_src_dir();
+  const std::string& src_dir() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_src_dir(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_src_dir();
+  PROTOBUF_NODISCARD std::string* release_src_dir();
+  void set_allocated_src_dir(std::string* src_dir);
+  private:
+  const std::string& _internal_src_dir() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src_dir(const std::string& value);
+  std::string* _internal_mutable_src_dir();
+  public:
+
   // @@protoc_insertion_point(class_scope:zftp_message.pull_msg)
  private:
   class _Internal;
@@ -1612,6 +1627,7 @@ class pull_msg final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr dstname_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr src_dir_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1742,7 +1758,6 @@ class pull_respon_msg final :
   enum : int {
     kDataFieldNumber = 2,
     kSaveNameFieldNumber = 3,
-    kSaveDirFieldNumber = 4,
     kOkFieldNumber = 1,
   };
   // bytes data = 2;
@@ -1773,20 +1788,6 @@ class pull_respon_msg final :
   std::string* _internal_mutable_save_name();
   public:
 
-  // string save_dir = 4;
-  void clear_save_dir();
-  const std::string& save_dir() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_save_dir(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_save_dir();
-  PROTOBUF_NODISCARD std::string* release_save_dir();
-  void set_allocated_save_dir(std::string* save_dir);
-  private:
-  const std::string& _internal_save_dir() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_save_dir(const std::string& value);
-  std::string* _internal_mutable_save_dir();
-  public:
-
   // bool ok = 1;
   void clear_ok();
   bool ok() const;
@@ -1806,7 +1807,6 @@ class pull_respon_msg final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr save_name_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr save_dir_;
     bool ok_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -2966,6 +2966,56 @@ inline void pull_msg::set_allocated_dstname(std::string* dstname) {
   // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_msg.dstName)
 }
 
+// string src_dir = 3;
+inline void pull_msg::clear_src_dir() {
+  _impl_.src_dir_.ClearToEmpty();
+}
+inline const std::string& pull_msg::src_dir() const {
+  // @@protoc_insertion_point(field_get:zftp_message.pull_msg.src_dir)
+  return _internal_src_dir();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void pull_msg::set_src_dir(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.src_dir_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:zftp_message.pull_msg.src_dir)
+}
+inline std::string* pull_msg::mutable_src_dir() {
+  std::string* _s = _internal_mutable_src_dir();
+  // @@protoc_insertion_point(field_mutable:zftp_message.pull_msg.src_dir)
+  return _s;
+}
+inline const std::string& pull_msg::_internal_src_dir() const {
+  return _impl_.src_dir_.Get();
+}
+inline void pull_msg::_internal_set_src_dir(const std::string& value) {
+  
+  _impl_.src_dir_.Set(value, GetArenaForAllocation());
+}
+inline std::string* pull_msg::_internal_mutable_src_dir() {
+  
+  return _impl_.src_dir_.Mutable(GetArenaForAllocation());
+}
+inline std::string* pull_msg::release_src_dir() {
+  // @@protoc_insertion_point(field_release:zftp_message.pull_msg.src_dir)
+  return _impl_.src_dir_.Release();
+}
+inline void pull_msg::set_allocated_src_dir(std::string* src_dir) {
+  if (src_dir != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.src_dir_.SetAllocated(src_dir, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.src_dir_.IsDefault()) {
+    _impl_.src_dir_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_msg.src_dir)
+}
+
 // -------------------------------------------------------------------
 
 // pull_respon_msg
@@ -3088,56 +3138,6 @@ inline void pull_respon_msg::set_allocated_save_name(std::string* save_name) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_respon_msg.save_name)
-}
-
-// string save_dir = 4;
-inline void pull_respon_msg::clear_save_dir() {
-  _impl_.save_dir_.ClearToEmpty();
-}
-inline const std::string& pull_respon_msg::save_dir() const {
-  // @@protoc_insertion_point(field_get:zftp_message.pull_respon_msg.save_dir)
-  return _internal_save_dir();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void pull_respon_msg::set_save_dir(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.save_dir_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:zftp_message.pull_respon_msg.save_dir)
-}
-inline std::string* pull_respon_msg::mutable_save_dir() {
-  std::string* _s = _internal_mutable_save_dir();
-  // @@protoc_insertion_point(field_mutable:zftp_message.pull_respon_msg.save_dir)
-  return _s;
-}
-inline const std::string& pull_respon_msg::_internal_save_dir() const {
-  return _impl_.save_dir_.Get();
-}
-inline void pull_respon_msg::_internal_set_save_dir(const std::string& value) {
-  
-  _impl_.save_dir_.Set(value, GetArenaForAllocation());
-}
-inline std::string* pull_respon_msg::_internal_mutable_save_dir() {
-  
-  return _impl_.save_dir_.Mutable(GetArenaForAllocation());
-}
-inline std::string* pull_respon_msg::release_save_dir() {
-  // @@protoc_insertion_point(field_release:zftp_message.pull_respon_msg.save_dir)
-  return _impl_.save_dir_.Release();
-}
-inline void pull_respon_msg::set_allocated_save_dir(std::string* save_dir) {
-  if (save_dir != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.save_dir_.SetAllocated(save_dir, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.save_dir_.IsDefault()) {
-    _impl_.save_dir_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:zftp_message.pull_respon_msg.save_dir)
 }
 
 // -------------------------------------------------------------------

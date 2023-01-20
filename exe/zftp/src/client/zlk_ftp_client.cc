@@ -30,7 +30,7 @@ void Client::_send_message(const zftp_message::Pakcet packet)
     if (packet.SerializeToString(&s))
     {
         DBG("send size = %d", s.size());
-        printf("send_msg size = %d\n", s.size());
+        //  printf("send_msg size = %d\n", s.size());
         m_connect->send_message(s.data(), s.size());
     }
     else
@@ -67,7 +67,6 @@ void cmd_ctrl()
         auto v = sp(cmd);
         int n = v.size();
         getchar();
-        printf("n= %d cmd = %s\n", n, cmd);
         if (v.size() == 0)
             continue;
         string &type = v[0];
@@ -128,6 +127,8 @@ void cmd_ctrl()
                 zftp_message::Pakcet packet;
                 zftp_message::pull_msg pull;
                 pull.set_name(v[1]);
+                pull.set_src_dir(".");
+
                 packet.set_msgid(int(zlkMsg::pull));
                 if (n == 2)
                 {
@@ -136,16 +137,56 @@ void cmd_ctrl()
                 else
                 {
                     struct stat st;
-                    if (stat(v[2].data(), &st) == 0 && (st.st_mode & S_IFDIR))
+                    if (stat(v[2].data(), &st) != 0)
                     {
-                        pull.set_dstname(v[2] + sep + v[1]);
+                        int idx = v[2].find_last_of('/');
+                        if (idx != -1)
+                        {
+                            pull.set_src_dir(v[2].substr(0, idx));
+
+                            if (idx == v[2].size() - 1)
+                            {
+                                pull.set_dstname(v[1]);
+                            }
+                            else
+                            {
+                                pull.set_dstname(v[2].substr(idx + 1));
+                            }
+                        }
+                        else
+                        {
+                            pull.set_dstname(v[2]);
+                        }
                     }
                     else
                     {
-                        pull.set_dstname(v[2]);
+                        if (st.st_mode & S_IFDIR)
+                        {
+                            pull.set_src_dir(v[2]);
+                            pull.set_dstname(v[1]);
+                        }
+                        else
+                        {
+                            int idx = v[2].find_last_of('/');
+                            if (idx != -1)
+                            {
+                                pull.set_src_dir(v[2].substr(0, idx));
+                                if (idx == v[2].size() - 1)
+                                {
+                                    pull.set_dstname(v[1]);
+                                }
+                                else
+                                {
+                                    pull.set_dstname(v[2].substr(idx + 1));
+                                }
+                            }
+                            else
+                            {
+                                pull.set_dstname(v[2]);
+                            }
+                        }
                     }
                 }
-
                 packet.set_msgbody(pull.SerializeAsString());
                 g_client->send_msg(packet);
             }
@@ -184,7 +225,6 @@ void cmd_ctrl()
 #else
                 int b _access(v[1].data(), 0)
 #endif
-                printf("%d\n", b);
                 if (b == 0)
                 {
                     zftp_message::Pakcet packet;
@@ -200,7 +240,17 @@ void cmd_ctrl()
                     {
                         ifs.read(pbuf, fos);
                         push.set_data(pbuf, fos);
-                        push.set_dst_name(n == 3 ? v[2] : v[1]);
+                        if (n == 2)
+                        {
+                            push.set_dst_name(v[1]);
+                        }
+                        else
+                        {
+                            if (*v[2].rbegin() == '/')
+                                v[2] += '/' + v[1];
+                            push.set_dst_name(v[2]);
+                        }
+
                         push.set_src_name(v[1]);
                         delete[] pbuf;
                     }
@@ -260,11 +310,9 @@ int main(int argc, char *argv[])
     {
         cout << x.first << ":" << x.second;
     }
-    zlk_log::getInstance()
-        .init("", 20480, 1);
 
-    // zlk_log::getInstance()
-    //     .init(config["log"] + sep + "log", 20480, 1);
+    zlk_log::getInstance()
+        .init(config["log"] + sep + "log", 20480, 1);
     io_service_pool isp(2);
 
     g_client = new Client(isp);

@@ -221,11 +221,15 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
                         int idx = cmd.find_last_of('/');
                         if (idx != -1)
                         {
-                            res.set_save_name(cmd.substr(idx + 1));
+                            cmd = cmd.substr(idx + 1);
+                        }
+                        if (msg.dstname() == msg.name())
+                        {
+                            res.set_save_name(cmd);
                         }
                         else
                         {
-                            res.set_save_name(cmd);
+                            res.set_save_name(msg.dstname());
                         }
                     }
 
@@ -249,6 +253,7 @@ void zftp_server_handleMessage::hand_pull(const zftp_message::Pakcet &packet, zf
         ERR("ParseFromString error");
         res.set_data("ParseFromString error");
     }
+    res.set_save_name(msg.src_dir() + '/' + res.save_name());
     zlk_res.set_msgbody(res.SerializeAsString());
 }
 void zftp_server_handleMessage::hand_push(const zftp_message::Pakcet &packet, zftp_message::Pakcet &zlk_res)
@@ -264,6 +269,25 @@ void zftp_server_handleMessage::hand_push(const zftp_message::Pakcet &packet, zf
         if (stat(cmd.data(), &st) == 0 && (st.st_mode & S_IFDIR))
         {
             cmd += '/' + msg.src_name();
+        }
+        else
+        {
+            int idx = cmd.find_last_of('/');
+            if (idx != -1)
+            {
+                string dir = cmd.substr(0, idx);
+                if (access(dir.data(), F_OK) != 0)
+                {
+                    string shell = "mkdir -p " + dir;
+                    system(shell.data());
+                }
+                // 没有文件名
+                if (idx == cmd.size() - 1)
+                {
+                    cmd += '/' + msg.src_name();
+                }
+                DBG("idx = %d cmd =%s", idx, cmd.data());
+            }
         }
 
         if (!msg.force())

@@ -116,7 +116,7 @@ public:
 
         if (_ing == nullptr)
         {
-            _ing = new char[sz];
+            _ing = new char[sz + 4];
             int_to_array(sz, _ing);
             memcpy(_ing + 4, msg, sz);
             // 4是包头

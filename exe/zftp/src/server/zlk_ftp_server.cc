@@ -39,16 +39,19 @@ void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &
 }
 int main(int argc, char *argv[])
 {
-    zlk_log::getInstance().init("log/server", 20480, 1, zlk_logmode_debug);
+    std::string path = "";
+    if (argc == 2)
+        path = argv[1];
+    zlk_log::getInstance().init(path.data(), 20480, 1, zlk_logmode_debug);
 
     io_service_pool isp(2);
 
     g_server = new Server(isp);
     g_server->regist();
     zlk_boost_socket s(isp);
-    if (argc == 2)
+    if (argc == 3)
     {
-        s.bind(atoi(argv[1]));
+        s.bind(atoi(argv[2]));
     }
     else
     {
