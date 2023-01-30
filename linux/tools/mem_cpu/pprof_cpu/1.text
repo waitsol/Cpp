@@ -1,0 +1,13 @@
+Total: 22 samples
+       9  40.9%  40.9%       10  45.5% void Merge
+       7  31.8%  72.7%        9  40.9% int Partition
+       2   9.1%  81.8%       11  50.0% void quickSort
+       1   4.5%  86.4%        1   4.5% operator new
+       1   4.5%  90.9%        1   4.5% std::move
+       1   4.5%  95.5%        2   9.1% std::swap
+       1   4.5% 100.0%       11  50.0% void MergeSort
+       0   0.0% 100.0%       22 100.0% __libc_start_main
+       0   0.0% 100.0%       22 100.0% _start
+       0   0.0% 100.0%       11  50.0% f1
+       0   0.0% 100.0%       11  50.0% f2
+       0   0.0% 100.0%       22 100.0% main

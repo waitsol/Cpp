@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <functional>
+#include <gperftools/profiler.h>
+
 int sz = 3000000;
 int a[13] = {0};
 void debuglog(int n)
@@ -49,8 +51,10 @@ int main(int argc, char *argv[])
 {
     // test();
     // return 0 ;
-
-    zlk_log::getInstance().init("", 2048, true);
+    // 添加性能测试
+    ProfilerStart("1.prof");
+    zlk_log::getInstance()
+        .init("lj", 2048, true);
 
     zlk_log::getInstance().test_time = 0;
     thread *pt[40];
@@ -83,4 +87,5 @@ int main(int argc, char *argv[])
 
     cout << "over use time " << (zlk_log::getInstance().test_time - start) << "ms" << endl;
     zlk_log::getInstance().uninit();
+    ProfilerStop();
 }

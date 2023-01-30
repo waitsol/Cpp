@@ -52,6 +52,7 @@ void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
     int n = 0;
     char buf[buflen] = {0};
     // cout << pszFormat << endl;
+    // pprof测试 这个时间是最耗时的  卡在了 tzset函数那里
     struct timeval now;
     gettimeofday(&now, nullptr);
     tm *t = localtime(&now.tv_sec);
@@ -139,18 +140,22 @@ void zlk_log::run(int rfd)
 
         FD_SET(rfd, &rdfds);
         //    printf("selcet\n");
+        tv.tv_sec = 0;
+        tv.tv_usec = 1000;                                   // 注意单位是微秒
         int iRet = select(rfd + 1, &rdfds, NULL, NULL, &tv); // 注意注意
         if (iRet < 0)
         {
-            printf("selcet error, iRet %d\n", iRet);
+            // 系统中断
+            if (errno == 4)
+                continue;
+            printf("selcet error, iRet %d error = %s %d\n", iRet, strerror(errno), errno);
             m_running = false;
             close(rfd);
 
             return;
         }
         // cout<<GetTickCount64()<<endl;
-        tv.tv_sec = 0;
-        tv.tv_usec = 1000; // 注意单位是微秒
+
         open();
         if (0 == iRet)
         {
