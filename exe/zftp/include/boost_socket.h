@@ -49,7 +49,7 @@ private:
         accept();
         if (ec)
         {
-            ERR("error %s", ec.message());
+            ERR("error %s", ec.message().data());
             return;
         }
 
@@ -61,7 +61,7 @@ private:
 
         if (ec)
         {
-            ERR("error %s", ec.message());
+            ERR("error %s", ec.message().data());
             return;
         }
 

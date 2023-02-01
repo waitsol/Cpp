@@ -140,7 +140,7 @@ private:
     {
         if (ec)
         {
-            ERR("send_message failed err = %s what = %s", ec.message(), ec.what());
+            ERR("send_message failed err = %s what = %s", ec.message().data(), ec.what().data());
             return;
         }
         if (offset == 0)
