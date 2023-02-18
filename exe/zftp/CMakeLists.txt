@@ -24,6 +24,7 @@ project(zftp_client VERSION 1.0)
 
 include_directories("${CMAKE_BINARY_DIR}/include")
 include_directories("${CMAKE_BINARY_DIR}/../../lib/log/include")
+include_directories("${CMAKE_BINARY_DIR}/../../tools/bash/")
 link_libraries("${CMAKE_BINARY_DIR}/lib")
 
 file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/include/*.h )
