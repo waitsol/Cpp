@@ -40,10 +40,12 @@ void zlk_log::init(string fileName, int buffsize, bool multithread, zlk_logmode 
 
     m_thread = new thread(std::bind(&zlk_log::run, this, rfd));
 
-    printf("log init success\n");
+    printf("logfile  init success \n");
 }
 void zlk_log::write(zlk_logmode mode, const char *pszFormat, ...)
 {
+    //  printf("write\n");
+
     if ((mode & (zlk_logmode_end - 1)) < m_print_level)
         return;
 
@@ -135,6 +137,7 @@ void zlk_log::run(int rfd)
     char buf[BUFSIZ];
 
     list<zlk_buffer *> blist;
+    printf("log thread run\n");
     while (m_running)
     {
 
@@ -142,7 +145,10 @@ void zlk_log::run(int rfd)
         //    printf("selcet\n");
         tv.tv_sec = 0;
         tv.tv_usec = 1000;                                   // 注意单位是微秒
+                                                             //   printf("?\n");
         int iRet = select(rfd + 1, &rdfds, NULL, NULL, &tv); // 注意注意
+                                                             // printf("??\n");
+
         if (iRet < 0)
         {
             // 系统中断
@@ -197,7 +203,6 @@ void zlk_log::run(int rfd)
 void zlk_log::sync2file(zlk_buffer *pbuf)
 {
     list<zlk_buffer *> blist;
-
     {
         // 做一个缓冲 这时候 write可以将buffer添加到m_fileBufferList
         lock(m_fileMutex);
@@ -255,7 +260,7 @@ void zlk_log::open()
         tm *t = localtime(&now);
         m_time = now;
         char buf[BUFSIZ] = {0};
-        snprintf(buf, BUFSIZ, "%s_%d_%d_%d_%d_%d_%d.log", m_fileName_pre.c_str(), t->tm_year + 1900, t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
+        snprintf(buf, BUFSIZ, "%s_%d_%d_%02d_%02d_%02d_%02d.log", m_fileName_pre.c_str(), t->tm_year + 1900, t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
         if (m_file.is_open())
             m_file.close();
         m_file.open(buf);
