@@ -9,7 +9,8 @@ project(zlk_log VERSION 1.0)
 include_directories("${CMAKE_BINARY_DIR}/include")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY  "${PROJECT_BINARY_DIR}/lib") #.so
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")  #.a
-
+SET(CMAKE_BUILD_TYPE "Debug")  
+set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -Wall -ggdb")
 file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/*.h )
 file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/zlk_log.cc )
 
@@ -32,4 +33,4 @@ file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/*.h )
 file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/main.cc )
 
 add_executable(${PROJECT_NAME}  ${SRC} ${CURRENT_HEADERS})
-target_link_libraries(${PROJECT_NAME} zlk_log pthread)
+target_link_libraries(${PROJECT_NAME} zlk_log pthread profiler)

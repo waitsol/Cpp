@@ -18,11 +18,9 @@ class zlk_connect
 public:
     zlk_connect(int uid, boost::shared_ptr<boost::asio::ip::tcp::socket> sock) : _uid(uid), m_sock(sock)
     {
-        _end = 0;
     }
     void read_header()
     {
-        _end = _offset = 0;
         memset(header_buffer_.data(), 0, header_buffer_.size());
         m_sock->async_receive(boost::asio::buffer(header_buffer_, 4), boost::bind(&zlk_connect::read_body,
                                                                                   this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
@@ -51,14 +49,20 @@ protected:
             return;
         }
 
-        _end = *(int *)header_buffer_.c_array();
-        _offset = 0;
-        DBG("header sz = %d\n", _end);
+        int end = *(int *)header_buffer_.c_array();
 
-        m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
-                                                                                                         this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+        DBG("header sz = %d\n", end);
+        if (end <= 0)
+        {
+            ERR("read_body error end  = %d", end);
+            read_header();
+            return;
+        }
+
+        m_sock->async_receive(boost::asio::buffer(buffer_.data(), end), boost::bind(&zlk_connect::handle_body,
+                                                                                    this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 0, end));
     }
-    void handle_body(const boost::system::error_code &ec, std::size_t bytes_transferred)
+    void handle_body(const boost::system::error_code &ec, std::size_t bytes_transferred, int offset, int end)
     {
 
         if (ec)
@@ -75,24 +79,31 @@ protected:
             close();
             return;
         }
-        _offset += bytes_transferred;
-        if (_offset >= _end)
+        offset += bytes_transferred;
+        if (offset >= end)
         {
-            DBG("Read over sz = %d", _offset);
-            char *msg = new char[_end];
-            memcpy(msg, buffer_.data(), _end);
+            DBG("Read over sz = %d", offset);
+            char *msg = new char[end];
+            memcpy(msg, buffer_.data(), end);
 
             // 调用虚函数 不同的服务连接处理不一样
-            hand_message(msg, _end);
-            int d = _offset - _end;
+            hand_message(msg, end);
+            int d = offset - end;
             if (d >= 4)
             {
-                int tmp = _end;
-                _end = *(int *)(header_buffer_.c_array() + tmp);
-                _offset = d - 4;
-                memcpy(header_buffer_.c_array(), header_buffer_.c_array() + tmp, _offset);
-                m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
-                                                                                                                 this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+                int tmp = end;
+                end = *(int *)(header_buffer_.c_array() + tmp);
+                if (end <= 0)
+                {
+                    ERR("handle_body error end  = %d", end);
+                    read_header();
+                    return;
+                }
+                offset = d - 4;
+
+                memcpy(header_buffer_.c_array(), header_buffer_.c_array() + tmp, offset);
+                m_sock->async_receive(boost::asio::buffer(buffer_.data() + offset, end - offset), boost::bind(&zlk_connect::handle_body,
+                                                                                                              this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
             }
             else
             {
@@ -102,8 +113,8 @@ protected:
         }
         else
         {
-            m_sock->async_receive(boost::asio::buffer(buffer_.data() + _offset, _end - _offset), boost::bind(&zlk_connect::handle_body,
-                                                                                                             this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+            m_sock->async_receive(boost::asio::buffer(buffer_.data() + offset, end - offset), boost::bind(&zlk_connect::handle_body,
+                                                                                                          this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, offset, end));
         }
     }
 
@@ -210,8 +221,6 @@ private:
     boost::mutex _mu;
     std::queue<socket_msg> _q_msg;
     char *_ing;
-    int _offset;
-    int _end;
 };
 
 #endif

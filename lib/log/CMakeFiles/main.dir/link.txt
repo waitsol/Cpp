@@ -1,1 +1,1 @@
-/usr/bin/c++     CMakeFiles/main.dir/src/main.cc.o  -o main  -Wl,-rpath,/root/wm/git/Cpp/lib/log/lib lib/libzlk_log.so -lpthread 
+/usr/bin/c++  -g -Wall -ggdb   CMakeFiles/main.dir/src/main.cc.o  -o main  -Wl,-rpath,/root/wm/git/Cpp/lib/log/lib lib/libzlk_log.so -lpthread -lprofiler 

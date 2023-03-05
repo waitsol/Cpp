@@ -39,11 +39,15 @@ void Server::handle_message(zftp_message::Pakcet &packet, zftp_message::Pakcet &
 }
 int main(int argc, char *argv[])
 {
-    std::string path = "";
-    if (argc == 2)
-        path = argv[1];
-    zlk_log::getInstance().init(path.data(), 20480, 1, zlk_logmode_debug);
+    std::string path = "log/server";
+    // if (argc == 2)
+    //     path = argv[1];
 
+    printf("adas\n");
+    zlk_log::getInstance().init(path, 20480, 1, zlk_logmode_debug);
+    usleep(1000);
+    printf("adas\n");
+    // return 1;
     io_service_pool isp(2);
 
     g_server = new Server(isp);
@@ -59,6 +63,8 @@ int main(int argc, char *argv[])
     }
 
     s.accept();
+
     isp.run();
+
     return 0;
 }

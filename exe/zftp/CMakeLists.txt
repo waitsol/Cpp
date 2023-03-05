@@ -9,6 +9,7 @@ project(zftp_server VERSION 1.0)
 include_directories("${CMAKE_BINARY_DIR}/include")
 include_directories("${CMAKE_BINARY_DIR}/../../lib/log/include")
 link_libraries("${CMAKE_BINARY_DIR}/lib")
+link_libraries("/usr/lib")
 SET(CMAKE_BUILD_TYPE "Debug")  
 set(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS_DEBUG} -Wall -ggdb")
 
@@ -26,6 +27,8 @@ include_directories("${CMAKE_BINARY_DIR}/include")
 include_directories("${CMAKE_BINARY_DIR}/../../lib/log/include")
 include_directories("${CMAKE_BINARY_DIR}/../../tools/bash/")
 link_libraries("${CMAKE_BINARY_DIR}/lib")
+link_libraries("/usr/lib")
+
 
 file(GLOB_RECURSE CURRENT_HEADERS  ${PROJECT_SOURCE_DIR}/include/*.h )
 file(GLOB_RECURSE SRC  ${PROJECT_SOURCE_DIR}/src/client/*.cc )

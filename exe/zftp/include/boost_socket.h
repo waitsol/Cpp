@@ -8,7 +8,6 @@
 #include "zlk_ftp_server.h"
 #include "zlk_ftp_client.h"
 #include "zftp_client_handmessage.h"
-
 using boost::asio::io_service;
 using boost::asio::ip::tcp;
 using std::map;
@@ -52,7 +51,6 @@ private:
             ERR("error %s", ec.message().data());
             return;
         }
-
         DBG("new connect ip = %s  port = %d\n", sock->remote_endpoint().address().to_string().data(), sock->remote_endpoint().port());
         m_io_service_pool.get_acceptor_io_service().post(boost::bind(&Server::post, g_server, sock));
     }

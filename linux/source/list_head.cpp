@@ -9,7 +9,7 @@ struct foo
     int fooness;
     struct list_head list;
 };
-//#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+// #define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 
 #define container_of(ptr, type, member) ({                      \
     const  typeof( ((type *)0)->member ) *__mptr = (ptr);    \
@@ -25,7 +25,7 @@ int main()
 {
     list_head *head = new list_head;
     foo *iter;
-    foo *fir = new foo;  
+    foo *fir = new foo;
     fir->fooness = 1;
     foo *sec = new foo;
     sec->fooness = 2;
@@ -35,7 +35,8 @@ int main()
     head->next = &fir->list;
 
     list_for_each_entry(iter, head, list)
-        cout << iter->fooness << endl;
+            cout
+        << iter->fooness << endl;
 
     for (int i = ({int x=4,y=2;x-4;y; }); i < 3; i++)
     {
